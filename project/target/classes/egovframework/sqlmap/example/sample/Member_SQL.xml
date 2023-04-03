@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberSpace">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="MemberVO" type="egovframework.example.sample.service.MemberVO"/>
+
+	<insert id="memberDAO.insertMember">
+		INSERT INTO member(USERID, password, name, phone) values(#userID#, #password#, #name#, #phone#)
+	</insert>
+
+	<select id="memberDAO.idcheck"  resultClass="int">
+		SELECT COUNT(*) FROM member
+		WHERE USERID = #userID#
+	</select>
+
+	<select id="memberDAO.SelectMemberList" resultClass="egovMap">
+		 SELECT USERID, password, name, phone FROM member
+	</select>
+
+	<select id = "memberDAO.seleteuserdata" resultClass="MemberVO">
+		SELECT USERID, password, name, phone FROM member
+		WHERE userID=#userid#
+	</select>
+
+	<update id="memberDAO.updateUser">
+		UPDATE member SET userID = #userID#, password = #password#, name = #name#, phone = #phone#
+		WHERE userID = #userID#
+	</update>
+
+	<delete id="memberDAO.deleteMember" >
+		DELETE FROM member WHERE USERID = #userid#
+	</delete>
+	
+	<select id="memberDAO.userSearch" resultClass="egovMap">
+		SELECT
+	</select>
+</sqlMap>

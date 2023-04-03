@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+	h2{
+		text-align: center;
+	}
+	table{
+		width:500px;
+		border-collapse:collapse;
+		margin-left:auto;
+   		margin-right:auto;
+
+	}
+	th, td{
+		padding:5px;
+		text-align: center;
+	}
+
+	.input_text{
+	 width:380px;
+	 height:25px;
+	}
+
+
+
