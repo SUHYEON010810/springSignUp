@@ -19,8 +19,30 @@ public class memberController {
 	@Resource(name="MemberService")
 	private MemberService memberService;
 
-	@RequestMapping(value="/signUpWrite.do")
+	/* 로그인 폼 */
+	@RequestMapping(value="/loginWrite.do")
 	public String loginWrite() {
+		return "member/loginWrite";
+	}
+
+	/* 로그인 확인 */
+	/* 결과 메세지를 다시 보내기 위해 @ResponseBody 선언 */
+	@ResponseBody
+	@RequestMapping(value="/logincheck.do")
+	public String logincheck(MemberVO vo) throws Exception{
+		System.out.println("id === "+ vo.getUserID());
+		System.out.println("pass ===="+ vo.getPassword());
+
+		int result = memberService.selectlogin(vo);
+		System.out.println("데이터 ==== "+result);
+		String mesage = "";
+
+		return mesage;
+	}
+
+	/* 회원가입 폼 */
+	@RequestMapping(value="/signUpWrite.do")
+	public String signUpWrite() {
 		return "member/signUpWrite";
 	}
 

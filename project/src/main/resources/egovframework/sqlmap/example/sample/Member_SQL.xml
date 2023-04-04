@@ -6,6 +6,12 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="MemberVO" type="egovframework.example.sample.service.MemberVO"/>
 
+	<!-- 로그인 -->
+	<select id="MemberVO.selectlogin" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM member
+		WHERE USERID = #userID# AND password = #password#
+	</select>
+
 	<!-- 회원 등록 -->
 	<insert id="memberDAO.insertMember">
 		INSERT INTO member(USERID, password, name, phone) values(#userID#, #password#, #name#, #phone#)
@@ -45,10 +51,5 @@
 	<delete id="memberDAO.deleteMember" >
 		DELETE FROM member WHERE USERID = #userid#
 	</delete>
-
-	<!-- 검색 -->
-	<select id="memberDAO.memberSearch" resultClass="egovMap">
-		SELECT
-	</select>
 
 </sqlMap>

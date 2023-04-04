@@ -3,6 +3,10 @@ package egovframework.example.sample.service;
 import java.util.List;
 
 public interface MemberService {
+
+	/* 로그인  */
+	public int selectlogin(MemberVO vo)throws Exception;
+
 	/* 회원 등록 */
 	public String InsertMember(MemberVO vo) throws Exception;
 
@@ -19,7 +23,4 @@ public interface MemberService {
 
 	/* 회원 정보 삭제 */
 	public int deleteMember(String userid)  throws Exception;
-
-	/* 회원 검색 */
-	public List<?> userSearch(String data) throws Exception;
 }

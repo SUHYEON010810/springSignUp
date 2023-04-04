@@ -17,6 +17,13 @@ public class MemberServiceImpl extends EgovAbstractServiceImpl implements Member
 	@Resource(name="MemberDAO")
 	private MemberDAO memberDAO;
 
+	/* 로그인 */
+	@Override
+	public int selectlogin(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.selectlogin(vo);
+	}
+
 	/* 회원 등록 */
 	@Override
 	public String InsertMember(MemberVO vo) throws Exception {
@@ -45,7 +52,7 @@ public class MemberServiceImpl extends EgovAbstractServiceImpl implements Member
 		System.out.println("서비스 진입");
 		return memberDAO.seleteuserdata(userid);
 	}
-
+	/* 화원 정보 수정 저장 */
 	@Override
 	public int updateUser(MemberVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -60,11 +67,7 @@ public class MemberServiceImpl extends EgovAbstractServiceImpl implements Member
 		return memberDAO.deleteMember(userid);
 	}
 
-	@Override
-	public List<?> userSearch(String data) throws Exception {
-		// TODO Auto-generated method stub
-		return memberDAO.userSearch(data);
-	}
+
 
 
 
