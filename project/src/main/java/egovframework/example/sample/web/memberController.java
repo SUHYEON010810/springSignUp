@@ -30,12 +30,16 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping(value="/logincheck.do")
 	public String logincheck(MemberVO vo) throws Exception{
+		String mesage = "";
 		System.out.println("id === "+ vo.getUserID());
 		System.out.println("pass ===="+ vo.getPassword());
 
 		int result = memberService.selectlogin(vo);
+		if(result == 1) {
+			mesage = "ok";
+		}
 		System.out.println("데이터 ==== "+result);
-		String mesage = "";
+
 
 		return mesage;
 	}
