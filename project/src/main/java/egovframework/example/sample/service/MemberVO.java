@@ -6,7 +6,23 @@ public class MemberVO {
 	private String name;
 	private String phone;
 
+	/* memberList에 search를 하기위해 변수 선언( 변수명은 memberList의 name와 같아야 함.) */
+	private String searchGubun;
+	private String searchText;
 
+	/* get/set 메소드 */
+	public String getSearchGubun() {
+		return searchGubun;
+	}
+	public void setSearchGubun(String searchGubun) {
+		this.searchGubun = searchGubun;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
 	public String getUserID() {
 		return userID;
 	}

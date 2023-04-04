@@ -43,7 +43,7 @@
 	   text-decoration: none;
 	   outline: none
    }
-   #search_form{
+   #searchFrm{
    		text-align: center;
    		margin-bottom : 15px;
    }
@@ -59,18 +59,20 @@
 </script>
 <body>
 <a href="signUpWrite.do"> 회원가입 </a>
+<a href="#"> 로그인 </a>
 <h2>회원 목록</h2>
-	<div  id="search_form">
-		<form action="search_result.php" method="get">
-			<select name="catgo">
-				<option value="mb_no">아이디</option>
-				<option value="mb_name">이름</option>
-				<option value="mb_hp">전화번호</option>
-	      	</select>
-			<input type="text" name="search" required  />
-			<input class="bt_sm_css" type=submit value=검색>
-		</form>
-	</div>
+	<form id="searchFrm" name="searchFrm" method="post" action="memberList.do">
+		<select name="searchGubun" id="searchGubun">
+				<option value="userID">아이디</option>
+				<option value="name">이름</option>
+				<option value="phone">전화번호</option>
+		</select>
+		<input type="text" name="searchText" id="searchText">
+		<button type="submit" >검색</button>
+	</form>
+
+
+
    <table>
       <tr>
          <th></th>

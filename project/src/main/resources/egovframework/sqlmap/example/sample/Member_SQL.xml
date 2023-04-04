@@ -6,34 +6,49 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="MemberVO" type="egovframework.example.sample.service.MemberVO"/>
 
+	<!-- 회원 등록 -->
 	<insert id="memberDAO.insertMember">
 		INSERT INTO member(USERID, password, name, phone) values(#userID#, #password#, #name#, #phone#)
 	</insert>
 
+	<!-- 아이디 체크 -->
 	<select id="memberDAO.idcheck"  resultClass="int">
 		SELECT COUNT(*) FROM member
 		WHERE USERID = #userID#
 	</select>
 
+	<!-- 회원 목록 -->
 	<select id="memberDAO.SelectMemberList" resultClass="egovMap">
-		 SELECT USERID, password, name, phone FROM member
+
+			 SELECT USERID, password, name, phone
+			 FROM member
+			 <!-- searchGubun이 널값이 아닌 경우에만  where문 실행 -->
+			 <isNotNull property="searchGubun">
+			 <!-- $는 컬럼명이 동적으로 바뀌어야 할 때 사용 -->
+			 	WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
+			 </isNotNull>
 	</select>
 
+	<!-- 수정1 (회원 선택) -->
 	<select id = "memberDAO.seleteuserdata" resultClass="MemberVO">
 		SELECT USERID, password, name, phone FROM member
 		WHERE userID=#userid#
 	</select>
 
+	<!-- 수정2 (내용 업데이트) -->
 	<update id="memberDAO.updateUser">
 		UPDATE member SET userID = #userID#, password = #password#, name = #name#, phone = #phone#
 		WHERE userID = #userID#
 	</update>
 
+	<!-- 회원 삭제 -->
 	<delete id="memberDAO.deleteMember" >
 		DELETE FROM member WHERE USERID = #userid#
 	</delete>
-	
-	<select id="memberDAO.userSearch" resultClass="egovMap">
+
+	<!-- 검색 -->
+	<select id="memberDAO.memberSearch" resultClass="egovMap">
 		SELECT
 	</select>
+
 </sqlMap>

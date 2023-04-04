@@ -59,13 +59,15 @@ public class memberController {
 	/* 회원 목록 */
 	@RequestMapping(value="/memberList.do")
 	public String selectMemberList(MemberVO vo, ModelMap model) throws Exception{
-
+		System.out.println("검색목록==========" + vo.getSearchGubun());
+		System.out.println("검색이름==========" + vo.getSearchText());
 		List<?> list = memberService.SelectMemberList(vo);
 
 		/* JSP로 데이터 전달
 		 * addAttribute( JSP에 사용할 변수명, 실 데이터) */
 		model.addAttribute("resultList",list);
 
+		System.out.println(list);
 
 		return "member/memberList";
 	}
@@ -104,6 +106,8 @@ public class memberController {
 
 		return "redirect:memberList.do";
 	}
+
+	/* 회원 검색 */
 
 
 }
