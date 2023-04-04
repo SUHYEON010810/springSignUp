@@ -21,6 +21,10 @@
 </script>
 </head>
 <style>
+
+   #searchFrm{
+   		padding-top : 40px;
+   }
    h2{
       text-align: center;
    }
@@ -58,10 +62,10 @@
    }
 </script>
 <body>
-<a href="signUpWrite.do"> 회원가입 </a>
-<a href="#"> 로그인 </a>
-<h2>회원 목록</h2>
+<%@ include file="../include/topmenu.jsp" %>
+
 	<form id="searchFrm" name="searchFrm" method="post" action="memberList.do">
+		<h2>회원 목록</h2>
 		<select name="searchGubun" id="searchGubun">
 				<option value="userID">아이디</option>
 				<option value="name">이름</option>

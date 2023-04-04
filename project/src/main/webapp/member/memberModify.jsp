@@ -16,7 +16,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-	<form name="frm" method="post" action="memberModifySave.do" id = "frm">
+	<%@ include file="../include/topmenu.jsp" %>
+
+	<form name="frm" method="post" action="memberModifySave.do" id = "frm" style="padding-top : 40px;" >
 		<h2>BUMIL</h2>
 		<table>
 			<tr>

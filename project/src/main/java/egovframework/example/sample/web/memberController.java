@@ -3,6 +3,7 @@ package egovframework.example.sample.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,13 +30,13 @@ public class memberController {
 	/* 결과 메세지를 다시 보내기 위해 @ResponseBody 선언 */
 	@ResponseBody
 	@RequestMapping(value="/logincheck.do")
-	public String logincheck(MemberVO vo) throws Exception{
+	public String logincheck(MemberVO vo, HttpSession session) throws Exception{
 		String mesage = "";
-		System.out.println("id === "+ vo.getUserID());
-		System.out.println("pass ===="+ vo.getPassword());
-
 		int result = memberService.selectlogin(vo);
+
 		if(result == 1) {
+			session.setAttribute("SessionUserID", vo.getUserID());
+
 			mesage = "ok";
 		}
 		System.out.println("데이터 ==== "+result);
@@ -52,7 +53,7 @@ public class memberController {
 
 	/* 회원가입 데이터 등록 */
 	@RequestMapping(value="/signUpWriteSave.do")
-	public String InsertLogin(MemberVO vo) throws Exception{
+	public String InsertLogin(MemberVO vo, HttpSession session) throws Exception{
 
 
 			System.out.println(vo.getUserID());
@@ -60,11 +61,11 @@ public class memberController {
 
 			String result = memberService.InsertMember(vo);
 			if(result == null) {
+				session.setAttribute("SessionUserID", vo.getUserID());
 				System.out.println("저장 완료");
 			}else {
 				System.out.println("저장 실패");
 			}
-		System.out.println("ddd");
 		return "redirect:memberList.do";
 	}
 
@@ -80,6 +81,14 @@ public class memberController {
 			message = "ok";
 		}
 		return message;
+	}
+
+	/* 로그아웃 */
+	@RequestMapping(value="/logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("SessionUserID");
+
+		return "member/loginWrite";
 	}
 
 	/* 회원 목록 */
