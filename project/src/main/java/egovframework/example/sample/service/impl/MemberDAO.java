@@ -53,6 +53,11 @@ public class MemberDAO extends EgovAbstractDAO{
 		return (int) delete("memberDAO.deleteMember", userid);
 	}
 
+	public int selectTotal(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return (int) select("MemberVO.selectTotal", vo);
+	}
+
 
 
 }

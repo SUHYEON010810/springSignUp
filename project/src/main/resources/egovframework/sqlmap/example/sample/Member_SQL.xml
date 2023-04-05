@@ -26,13 +26,18 @@
 	<!-- 회원 목록 -->
 	<select id="memberDAO.SelectMemberList" resultClass="egovMap">
 
-			 SELECT USERID, password, name, phone
-			 FROM member
-			 <!-- searchGubun이 널값이 아닌 경우에만  where문 실행 -->
-			 <isNotNull property="searchGubun">
-			 <!-- $는 컬럼명이 동적으로 바뀌어야 할 때 사용 -->
-			 	WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
-			 </isNotNull>
+			 SELECT b.* FROM(
+			 	SELECT rownum rn, a.* FROM(
+
+			 		SELECT USERID, password, name, phone
+					FROM member
+					<isNotNull property="searchGubun">
+					 	WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
+					</isNotNull>
+					ORDER BY USERID DESC )a ) b
+			<![CDATA[
+				WHERE rn >= #startIndex# AND rn <= #endIndex#
+			]]>
 	</select>
 
 	<!-- 수정1 (회원 선택) -->
@@ -51,5 +56,10 @@
 	<delete id="memberDAO.deleteMember" >
 		DELETE FROM member WHERE USERID = #userid#
 	</delete>
+
+	<!-- 토탈 데이터 얻어오기 -->
+	<select id="MemberVO.selectTotal" resultClass="java.lang.Integer">
+		SELECT COUNT(*) total FROM member
+	</select>
 
 </sqlMap>

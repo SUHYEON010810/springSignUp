@@ -42,14 +42,16 @@
    button{
       display:inline;
    }
-   a{
-   	   float: right;
-	   text-decoration: none;
-	   outline: none
-   }
    #searchFrm{
    		text-align: center;
    		margin-bottom : 15px;
+   }
+   #pagediv a{
+   		text-decoration: none;
+	   outline: none
+   		margin-top:5px;
+   		text-align:center;
+
    }
 
 
@@ -63,7 +65,6 @@
 </script>
 <body>
 <%@ include file="../include/topmenu.jsp" %>
-
 	<form id="searchFrm" name="searchFrm" method="post" action="memberList.do">
 		<h2>회원 목록</h2>
 		<select name="searchGubun" id="searchGubun">
@@ -74,32 +75,35 @@
 		<input type="text" name="searchText" id="searchText">
 		<button type="submit" >검색</button>
 	</form>
+    <table>
+       <tr>
+          <th></th>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>전화번호</th>
+          <th>관리</th>
+       </tr>
+       <!-- 반복문 -->
+       <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
+       <c:forEach var="result" items="${resultList}" varStatus="status">
+          <tr>
+             <td>${ status.count } </td>
+             <td>${ result.userid }</td>
 
+             <td>${ result.name }</td>
+             <td>${ result.phone }</td>
+             <td>
+                <button id = "updateData" name="update" onclick = "location='memberModify.do?userid=${result.userid}'">수정</button>
+                <button onclick="fn_delete('${result.userid}')">삭제</button>
+             </td>
+          </tr>
+       </c:forEach>
+    </table>
 
-
-   <table>
-      <tr>
-         <th></th>
-         <th>아이디</th>
-         <th>이름</th>
-         <th>전화번호</th>
-         <th>관리</th>
-      </tr>
-      <!-- 반복문 -->
-      <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
-      <c:forEach var="result" items="${resultList}" varStatus="status">
-         <tr>
-            <td>${ status.count } </td>
-            <td>${ result.userid }</td>
-
-            <td>${ result.name }</td>
-            <td>${ result.phone }</td>
-            <td>
-               <button id = "updateData" name="update" onclick = "location='memberModify.do?userid=${result.userid}'">수정</button>
-               <button onclick="fn_delete('${result.userid}')">삭제</button>
-            </td>
-         </tr>
-      </c:forEach>
-   </table>
+    <div id="pagediv" style="margin-top:5px; text-align:center;" >
+		<c:forEach var="i" begin="1" end="${totalPage }">
+			<a href="memberList.do?viewPage=${i }">${i }</a>
+		</c:forEach>
+    </div>
 </body>
 </html>

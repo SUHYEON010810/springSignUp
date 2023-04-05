@@ -23,4 +23,7 @@ public interface MemberService {
 
 	/* 회원 정보 삭제 */
 	public int deleteMember(String userid)  throws Exception;
+
+	/* Total 개수 */
+	public int selectTotal(MemberVO vo) throws Exception;
 }

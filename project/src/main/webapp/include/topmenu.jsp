@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-	div, a{
+	#topMenuDiv, .topMenuA{
 		float:right;
 	}
 	label{
@@ -20,11 +20,11 @@
 %>
 <body>
 			<% if(USERID == null){ %>
-					<a href="/project/loginWrite.do">로그인</a>
+					<a class="topMenuA" href="/project/loginWrite.do">로그인</a>
 			<% }else{ %>
-					<div>
+					<div id = "topMenuDiv">
 						<label><%= USERID %>님 환영합니다.</label>
-						<a href="/project/logout.do"> 로그아웃</a>
+						<a class="topMenuA" href="/project/logout.do"> 로그아웃</a>
 					</div>
 
 			<%} %>

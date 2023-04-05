@@ -1,5 +1,7 @@
 package egovframework.example.sample.service;
 
+import java.time.LocalDate;
+
 public class MemberVO {
 	private String userID;
 	private String password;
@@ -9,6 +11,15 @@ public class MemberVO {
 	/* memberList에 search를 하기위해 변수 선언( 변수명은 memberList의 name와 같아야 함.) */
 	private String searchGubun;
 	private String searchText;
+
+	/*페이징 처리를 위한 변수 선언*/
+	private int viewPage = 1;
+	private int startIndex = 1;
+	private int endIndex = 10;
+
+/*	 날짜 변수 선언
+	private LocalDate udate;*/
+
 
 	/* get/set 메소드 */
 	public String getSearchGubun() {
@@ -47,6 +58,33 @@ public class MemberVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public int getViewPage() {
+		return viewPage;
+	}
+	public void setViewPage(int viewPage) {
+		this.viewPage = viewPage;
+	}
+	public int getStartIndex() {
+		return startIndex;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getEndIndex() {
+		return endIndex;
+	}
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
+	}
+
+
+/*	public LocalDate getUdate() {
+		return udate;
+	}
+	public void setUdate(LocalDate udate) {
+		this.udate = udate;
+	}*/
+
 
 
 }

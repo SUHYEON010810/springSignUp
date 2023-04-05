@@ -1,5 +1,6 @@
 package egovframework.example.sample.web;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -59,6 +60,8 @@ public class memberController {
 			System.out.println(vo.getUserID());
 			System.out.println(vo.getPhone());
 
+			/*vo.setUdate(LocalDate.now());
+*/
 			String result = memberService.InsertMember(vo);
 			if(result == null) {
 				session.setAttribute("SessionUserID", vo.getUserID());
@@ -94,15 +97,24 @@ public class memberController {
 	/* 회원 목록 */
 	@RequestMapping(value="/memberList.do")
 	public String selectMemberList(MemberVO vo, ModelMap model) throws Exception{
-		System.out.println("검색목록==========" + vo.getSearchGubun());
-		System.out.println("검색이름==========" + vo.getSearchText());
+
+		/* 페이징 처리를 위해 토탈 갯수 얻어오기 */
+		int total = memberService.selectTotal(vo);
+		int totalPage = (int) Math.ceil((double)total/10);
+		int viewPage = vo.getViewPage();
+		int startIndex = (viewPage-1)*10+1;
+		int endIndex = startIndex + (10-1);
+
+		vo.setStartIndex(startIndex);
+		vo.setEndIndex(endIndex);
+
 		List<?> list = memberService.SelectMemberList(vo);
 
 		/* JSP로 데이터 전달
 		 * addAttribute( JSP에 사용할 변수명, 실 데이터) */
 		model.addAttribute("resultList",list);
-
-		System.out.println(list);
+		model.addAttribute("tota", total);
+		model.addAttribute("totalPage", totalPage);
 
 		return "member/memberList";
 	}
@@ -142,7 +154,7 @@ public class memberController {
 		return "redirect:memberList.do";
 	}
 
-	/* 회원 검색 */
+	/*  */
 
 
 }

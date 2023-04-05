@@ -67,6 +67,13 @@ public class MemberServiceImpl extends EgovAbstractServiceImpl implements Member
 		return memberDAO.deleteMember(userid);
 	}
 
+	/* 토탈 갯수 얻어오기 */
+	@Override
+	public int selectTotal(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.selectTotal(vo);
+	}
+
 
 
 
