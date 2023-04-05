@@ -52,7 +52,7 @@
        <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
        <c:forEach var="result" items="${resultList}" varStatus="status">
           <tr>
-             <td>${ status.count } </td>
+             <td>${ result.rn } </td>
              <td>${ result.userid }</td>
 
              <td>${ result.name }</td>

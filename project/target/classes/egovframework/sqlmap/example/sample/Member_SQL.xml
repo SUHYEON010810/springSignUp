@@ -32,7 +32,9 @@
 			 		SELECT USERID, password, name, phone
 					FROM member
 					<isNotNull property="searchGubun">
-					 	WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
+						<isNotNull property="searchText">
+					 		WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
+					 	</isNotNull>
 					</isNotNull>
 					ORDER BY USERID DESC )a ) b
 			<![CDATA[
@@ -60,6 +62,11 @@
 	<!-- 토탈 데이터 얻어오기 -->
 	<select id="MemberVO.selectTotal" resultClass="java.lang.Integer">
 		SELECT COUNT(*) total FROM member
+		<isNotNull property="searchGubun">
+			<isNotNull property="searchText">
+				WHERE $searchGubun$ LIKE '%'||#searchText#||'%'
+			</isNotNull>
+		</isNotNull>
 	</select>
 
 </sqlMap>

@@ -56,12 +56,6 @@ public class memberController {
 	@RequestMapping(value="/signUpWriteSave.do")
 	public String InsertLogin(MemberVO vo, HttpSession session) throws Exception{
 
-
-			System.out.println(vo.getUserID());
-			System.out.println(vo.getPhone());
-
-			/*vo.setUdate(LocalDate.now());
-*/
 			String result = memberService.InsertMember(vo);
 			if(result == null) {
 				session.setAttribute("SessionUserID", vo.getUserID());
@@ -104,6 +98,10 @@ public class memberController {
 		int viewPage = vo.getViewPage();
 		int startIndex = (viewPage-1)*10+1;
 		int endIndex = startIndex + (10-1);
+
+		if(viewPage > totalPage || viewPage <1) {
+			viewPage = 1;
+		}
 
 		vo.setStartIndex(startIndex);
 		vo.setEndIndex(endIndex);
