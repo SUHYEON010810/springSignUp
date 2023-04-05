@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+	a:hover{
+	    color:#586E9E;
+	}
+
+	.bt_css{
+		background-color:#FAFAFA;
+	    color: #586E9E;
+	    font-size: 13px;
+	    padding:5px;
+	    border-radius: 10px;
+	    border: 1px solid #929795;
+	    font-weight: 600;
+	    padding:2px, 5px;
+
+	}
+
+	.bt_css:hover{
+	    color: white;
+	    background-color: #586E9E;
+	}

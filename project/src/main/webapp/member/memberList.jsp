@@ -12,50 +12,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/mbList.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <title>Member List</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-
-</script>
 </head>
-<style>
 
-   #searchFrm{
-   		padding-top : 40px;
-   }
-   h2{
-      text-align: center;
-   }
-   table{
-      width:800px;
-      border-collapse:collapse;
-      margin-left:auto;
-      margin-right:auto;
-   }
-   th, td{
-      border : 1px solid #cccccc;
-      padding:5px;
-      text-align: center;
-   }
-   button{
-      display:inline;
-   }
-   #searchFrm{
-   		text-align: center;
-   		margin-bottom : 15px;
-   }
-   #pagediv a{
-   		text-decoration: none;
-	   outline: none
-   		margin-top:5px;
-   		text-align:center;
-
-   }
-
-
-</style>
 <script >
    function fn_delete(userid){
       if( confirm("정말 삭제하겠습니까? ")){
@@ -73,7 +38,7 @@
 				<option value="phone">전화번호</option>
 		</select>
 		<input type="text" name="searchText" id="searchText">
-		<button type="submit" >검색</button>
+		<button type="submit" class="bt_css">검색</button>
 	</form>
     <table>
        <tr>
@@ -93,8 +58,8 @@
              <td>${ result.name }</td>
              <td>${ result.phone }</td>
              <td>
-                <button id = "updateData" name="update" onclick = "location='memberModify.do?userid=${result.userid}'">수정</button>
-                <button onclick="fn_delete('${result.userid}')">삭제</button>
+                <button id = "updateData" name="update" class="bt_css" onclick = "location='memberModify.do?userid=${result.userid}'">수정</button>
+                <button class="bt_css" onclick="fn_delete('${result.userid}')">삭제</button>
              </td>
           </tr>
        </c:forEach>

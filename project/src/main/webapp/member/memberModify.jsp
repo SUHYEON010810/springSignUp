@@ -10,7 +10,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/memberStyle.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/mbSignUp.css">
 <title>수정</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -39,8 +41,8 @@
             </tr>
 			<tr>
 				<td>
-					<button type="submit" id="btn_Submit" name="signUpSubmit" >수정</button>
-					<button type="reset" onclick = "location='memberList.do'" >취소</button>
+					<button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css" >수정</button>
+					<button type="reset" class="bt_css" onclick = "location='memberList.do'" >취소</button>
 				</td>
 			</tr>
 		</table>

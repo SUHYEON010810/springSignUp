@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/memberLogin.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/mbLogin.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <title>로그인</title>
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -33,7 +35,6 @@
 
  		            success: function(result){
  		            	if(result == "ok"){
- 		            		alert(userid+"님 환영합니다.");
  		            		location="memberList.do"
  		            	}else{
  		            		alert("로그인 정보가 잘못되었습니다.");
@@ -50,25 +51,16 @@
  </script>
 </head>
 <body>
-
-
 	<form name="frm" method="post" id = "frm">
 		<h2>로그인</h2>
-		<table>
-			<tr>
-				<th><label for="userid"> 아이디 </label></th>
-				<td> <input type="text" name="userID" id="userID" placecholder="아이디 입력"> </td>
-			</tr>
-			<tr>
-				<th><label for="pass"> 비밀번호 </label></th>
-				<td> <input type="password" name="password" id="password" placecholder="아이디 입력"> </td>
-			</tr>
-		</table>
+		<div id = "inputDiv">
+			<input type="text" name="userID" id="userID" placeholder="아이디">
+			<input type="password" name="password" id="password" placeholder="비밀번호">
+		</div>
 		<div id="buttonDiv">
-			<button type="button" id="btn_Submit" name="loginSubmit" >로그인</button>
+			<button type="button" id="btn_Submit" name="loginSubmit" class="bt_css" >로그인</button>
 		</div>
 		<a href="signUpWrite.do"> 회원가입 </a>
-
 	</form>
 </body>
 </html>

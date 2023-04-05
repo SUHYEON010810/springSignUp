@@ -5,7 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>회원가입</title>
-	<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/memberStyle.css">
+	<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
+	<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
+	<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/mbSignUp.css">
 </head>
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -134,8 +136,8 @@
             </tr>
 			<tr>
 				<td>
-					<button type="submit" id="btn_Submit" name="signUpSubmit" >회원가입</button>
-					<button type="reset" >초기화</button>
+					<button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">회원가입</button>
+					<button type="reset" class="bt_css">초기화</button>
 				</td>
 			</tr>
 		</table>
