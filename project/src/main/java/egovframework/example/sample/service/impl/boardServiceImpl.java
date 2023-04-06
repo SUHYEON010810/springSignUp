@@ -13,9 +13,17 @@ public class boardServiceImpl extends EgovAbstractServiceImpl implements boardSe
 	@Resource(name="boardDAO")
 	private boardDAO boardDAO;
 
+	/* 게시글 등록 */
 	@Override
 	public String Insertboard(boardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return boardDAO.insertboard(vo);
+	}
+
+	/* 게시글 개수 확인 */
+	@Override
+	public int selectColumn() throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectColumn();
 	}
 }

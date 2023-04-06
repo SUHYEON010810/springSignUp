@@ -31,18 +31,19 @@ public class boardController {
 
 	@RequestMapping(value="/boardWriteSave.do")
 	public String InsertLogin(boardVO vo ) throws Exception{
-			System.out.println("데이터 : ==========" + vo.getUserID());
-			System.out.println("데이터 : ==========" + vo.getB_file());
-			System.out.println("데이터 : ==========" + vo.getRegDate());
 
-			System.out.println("ddddddd======="+ vo.getBoardID());
+			/* 게시판 번호 세팅 */
+			int column = boardService.selectColumn();
+			column += 1;
+			vo.setBoardID(column);
+
+			System.out.println("작성자 ====== "+vo.getUserID());
 
 
 			String result = boardService.Insertboard(vo);
 /*
 			Calendar cal = new GregorianCalendar();
 			Date date = new Date(cal.getTimeInMillis());
-ㄴㄴㄴ
 			System.out.println("날짜 ==== "+date);*/
 
 		/*	vo.setRegDate(date);

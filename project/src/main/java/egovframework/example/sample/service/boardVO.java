@@ -7,9 +7,9 @@ public class boardVO {
 	private String userID;
 	private String title;
 	private String content;
-	private String b_file;
+	private String b_file="aa";
 	private DATE regDate;
-	private int viewCnt;
+	private int viewCnt=0;
 
 
 	public int getBoardID() {

@@ -22,14 +22,21 @@
 
 </style>
 </head>
+<%
+	String USERID = (String) session.getAttribute("SessionUserID");
+%>
 <body>
 	<div id="topmenuDiv">
 		<div id="topmenuDiv_left">
 			<a href="memberList.do">회원</a>
-			<a>게시판</a>
+			<a href="/#">게시판</a>
 		</div>
 		<div id="topmenuDiv_right">
-			<a>로그인</a>
+			<% if(USERID == null){ %>
+				<a class="topMenuA" href="/project/loginWrite.do">로그인</a>
+			<% }else{ %>
+				<a class="topMenuA" href="/project/logout.do"> 로그아웃</a>
+			<%} %>
 		</div>
 	</div>
 </body>

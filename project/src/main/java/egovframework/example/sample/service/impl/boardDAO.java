@@ -13,4 +13,9 @@ public class boardDAO extends EgovAbstractDAO{
 		return (String) insert("boardDAO.insertboard", vo);
 	}
 
+	public int selectColumn() {
+		// TODO Auto-generated method stub
+		return (int) select("boardDAO.selectColumn");
+	}
+
 }

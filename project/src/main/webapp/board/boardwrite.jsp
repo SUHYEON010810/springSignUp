@@ -9,6 +9,11 @@
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <title>글등록</title>
 </head>
+
+<%
+	String session_uid = (String) session.getAttribute("SessionUserID");
+%>
+
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>
 
@@ -16,12 +21,8 @@
 			<table id="frm_table">
 				<h2>글 등록</h2>
 				<tr>
-					<td> <label for="boardID" >게시판 번호</label> </td>
-					<td> <input type="text" name="boardID" class="input_text" id="boardID" /> </td>
-				</tr>
-				<tr>
 					<td> <label for="uID" >작성자</label> </td>
-					<td> <input type="text" name="userID" class="input_text" id="uID" /> </td>
+					<td> <input type="text" name="userID" class="input_text" id="uID" value="<%= session_uid %>" readonly/> </td>
 				</tr>
 				<tr>
 					<td> <label for="title" >제목</label> </td>
