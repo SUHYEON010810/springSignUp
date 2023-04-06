@@ -37,11 +37,12 @@ public class boardController {
 
 			System.out.println("ddddddd======="+ vo.getBoardID());
 
+
 			String result = boardService.Insertboard(vo);
 /*
 			Calendar cal = new GregorianCalendar();
 			Date date = new Date(cal.getTimeInMillis());
-
+ㄴㄴㄴ
 			System.out.println("날짜 ==== "+date);*/
 
 		/*	vo.setRegDate(date);
