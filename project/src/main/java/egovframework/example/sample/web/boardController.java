@@ -40,18 +40,14 @@ public class boardController {
 			System.out.println("작성자 ====== "+vo.getUserID());
 
 
-			String result = boardService.Insertboard(vo);
-/*
+
+
 			Calendar cal = new GregorianCalendar();
 			Date date = new Date(cal.getTimeInMillis());
-			System.out.println("날짜 ==== "+date);*/
+			System.out.println("날짜 ==== "+date);
+			vo.setRegDate(date);
 
-		/*	vo.setRegDate(date);
-
-			System.out.println("날자======"+vo.getRegDate());*/
-
-			/*String result = boardService.Insertboard(vo);
-			System.out.println(result);*/
+			String result = boardService.Insertboard(vo);
 
 
 		return "aaa";

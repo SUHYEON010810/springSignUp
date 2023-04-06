@@ -1,6 +1,6 @@
 package egovframework.example.sample.service;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class boardVO {
 	private int boardID;
@@ -8,7 +8,7 @@ public class boardVO {
 	private String title;
 	private String content;
 	private String b_file="aa";
-	private DATE regDate;
+	private Date regDate;
 	private int viewCnt=0;
 
 
@@ -42,10 +42,10 @@ public class boardVO {
 	public void setB_file(String b_file) {
 		this.b_file = b_file;
 	}
-	public DATE getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(DATE regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 	public int getViewCnt() {
