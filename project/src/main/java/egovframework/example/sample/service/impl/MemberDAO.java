@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.example.sample.service.MemberVO;
+import egovframework.example.sample.service.boardVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("MemberDAO")
@@ -57,6 +58,7 @@ public class MemberDAO extends EgovAbstractDAO{
 		// TODO Auto-generated method stub
 		return (int) select("MemberVO.selectTotal", vo);
 	}
+
 
 
 

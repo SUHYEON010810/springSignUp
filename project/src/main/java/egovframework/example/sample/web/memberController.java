@@ -152,7 +152,6 @@ public class memberController {
 		return "redirect:memberList.do";
 	}
 
-	/*  */
 
 
 }

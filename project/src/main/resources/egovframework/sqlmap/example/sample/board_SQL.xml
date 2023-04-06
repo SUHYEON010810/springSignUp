@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="memberSpace">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="MemberVO" type="egovframework.example.sample.service.MemberVO"/>
+
+	<!-- 회원 등록 -->
+	<insert id="boardDAO.insertboard">
+		INSERT INTO board(boardID, userID, title, content, b_file, regDate, viewCnt)
+		values(#boardID#, #userID#, #title#, #content#, #b_file#, #regDate#, #viewCnt#)
+	</insert>
+
+
+
+</sqlMap>
