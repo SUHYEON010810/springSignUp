@@ -8,8 +8,10 @@
 <style>
 	#topmenuDiv{
 		text-align:center;
-		background-color: red
-
+		background-color: #D8D8D8;
+		padding-bottom : 50px;
+		margin-bottom : 70px;
+		font-size:20px;
 	}
 
 	#topmenuDiv_left{
@@ -20,6 +22,7 @@
 		float:right;
 	}
 
+
 </style>
 </head>
 <%
@@ -29,7 +32,7 @@
 	<div id="topmenuDiv">
 		<div id="topmenuDiv_left">
 			<a href="memberList.do">회원</a>
-			<a href="/#">게시판</a>
+			<a href="boardList.do">게시판</a>
 		</div>
 		<div id="topmenuDiv_right">
 			<% if(USERID == null){ %>

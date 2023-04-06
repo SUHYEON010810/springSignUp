@@ -29,7 +29,7 @@
    }
 </script>
 <body>
-<%@ include file="../include/topmenu.jsp" %>
+<%@ include file="../include/boardTopmenu.jsp" %>
 	<form id="searchFrm" name="searchFrm" method="post" action="memberList.do">
 		<h2>회원 목록</h2>
 		<select name="searchGubun" id="searchGubun">

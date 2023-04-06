@@ -3,16 +3,17 @@ package egovframework.example.sample.web;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import egovframework.example.sample.service.MemberService;
-import egovframework.example.sample.service.MemberVO;
 import egovframework.example.sample.service.boardService;
 import egovframework.example.sample.service.boardVO;
 import egovframework.example.sample.service.impl.boardDAO;
@@ -28,29 +29,69 @@ public class boardController {
 	public String boardWrite() {
 		return "board/boardwrite";
 	}
-
 	@RequestMapping(value="/boardWriteSave.do")
 	public String InsertLogin(boardVO vo ) throws Exception{
 
-			/* 게시판 번호 세팅 */
-			int column = boardService.selectColumn();
-			column += 1;
-			vo.setBoardID(column);
+		/* 등록 날짜 세팅 */
+		Calendar cal = new GregorianCalendar();
+		Date date = new Date(cal.getTimeInMillis());
+		vo.setRegDate(date);
 
-			System.out.println("작성자 ====== "+vo.getUserID());
+		String result = boardService.Insertboard(vo);
 
-
-
-
-			Calendar cal = new GregorianCalendar();
-			Date date = new Date(cal.getTimeInMillis());
-			System.out.println("날짜 ==== "+date);
-			vo.setRegDate(date);
-
-			String result = boardService.Insertboard(vo);
-
-
-		return "aaa";
+		return "redirect:boardList.do";
 	}
 
+	/* 게시글 리스트 */
+	@RequestMapping(value="/boardList.do")
+	public String boardList(boardVO vo, ModelMap model) throws Exception{
+
+		List<?> list = boardService.SelectBoardList(vo);
+		model.addAttribute("resultList",list);
+
+
+		return "board/boardList";
+	}
+
+	/* 게시글 상세보기 */
+	@RequestMapping(value="/boardDetail.do")
+	public String boardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
+		/* 조회수 */
+		viewCnt +=1;
+		d_vo.setViewCnt(viewCnt);
+		int data = boardService.updateViewCnt(d_vo);
+		if (data == 1) {
+			System.out.println("조회수 증가 완료");
+		}else {
+			System.out.println("조회수 증가 실패");
+		}
+
+		boardVO vo = boardService.seleteBoardData(boardID);
+		model.addAttribute("vo", vo);
+
+		return "board/boardDetail";
+	}
+
+	/* 게시글 삭제 */
+	@RequestMapping(value="/boardDelect.do")
+	public String boardDelect(int boardID)throws Exception{
+
+		int result = boardService.deleteBoard(boardID);
+		if(result == 1) {
+			System.out.println("삭제 완료");
+		}else {
+			System.out.println("삭제 실패");
+		}
+
+
+		return "redirect:boardList.do";
+	}
+
+	@RequestMapping(value="/boardModify.do")
+	public String boardModify(int boardID, ModelMap model) throws Exception{
+		/*boardVO vo = boardService.seleteBoardData(boardID);
+		model.addAttribute("vo", vo);*/
+		System.out.println("수정 컨트롤러 들어옴 ===================");
+		return "board/boardModify";
+	}
 }

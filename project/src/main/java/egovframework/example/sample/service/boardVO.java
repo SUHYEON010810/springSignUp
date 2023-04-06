@@ -7,11 +7,27 @@ public class boardVO {
 	private String userID;
 	private String title;
 	private String content;
-	private String b_file="aa";
+	private String b_file;
 	private Date regDate;
 	private int viewCnt=0;
 
+	/* memberList에 search를 하기위해 변수 선언( 변수명은 memberList의 name와 같아야 함.) */
+	private String searchText;
+	private String sortGubun;
 
+
+	public String getSortGubun() {
+		return sortGubun;
+	}
+	public void setSortGubun(String sortGubun) {
+		this.sortGubun = sortGubun;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
 	public int getBoardID() {
 		return boardID;
 	}
@@ -53,6 +69,12 @@ public class boardVO {
 	}
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
+	}
+	@Override
+	public String toString() {
+		return "boardVO [boardID=" + boardID + ", userID=" + userID + ", title=" + title + ", content=" + content
+				+ ", b_file=" + b_file + ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", searchText=" + searchText
+				+ ", sortGubun=" + sortGubun + "]";
 	}
 
 }

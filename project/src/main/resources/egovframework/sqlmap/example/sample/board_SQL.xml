@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="memberSpace">
+<sqlMap namespace="boardSpace">
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-	<typeAlias  alias="MemberVO" type="egovframework.example.sample.service.MemberVO"/>
+	<typeAlias  alias="boardVO" type="egovframework.example.sample.service.boardVO"/>
 
 	<!-- 게시글 등록 -->
 	<insert id="boardDAO.insertboard">
 		INSERT INTO board(boardID, userID, title, content, b_file, regDate, viewCnt)
-		values(#boardID#, #userID#, #title#, #content#, #b_file#, #regDate#, #viewCnt#)
+		values(nboard_seq.nextval, #userID#, #title#, #content#, #b_file#, #regDate#, #viewCnt#)
 	</insert>
 
-	<!-- 테이블 행 개수 -->
-	<select id="boardDAO.selectColumn"  resultClass="int">
-		SELECT count(*)
+	<!-- 게시판 목록 -->
+	<select id="boardDAO.selectList" resultClass="egovMap">
+ 		SELECT boardID, title, userID, regDate, viewCnt
 		FROM board
+		ORDER BY boardID
 	</select>
 
+	<select id="boardDAO.seleteBoardData" resultClass="boardVO">
+		SELECT boardID, userID, title, content, b_file, regDate, viewCnt  FROM board
+		WHERE boardID=#boardID#
+	</select>
 
+	<delete id="boardDAO.deleteBoard" >
+		DELETE FROM board WHERE boardID = #boardID#
+	</delete>
+
+	<update id="boardDAO.updateViewCnt">
+		UPDATE board SET viewCnt = #viewCnt#
+		WHERE boardID = #boardID#
+	</update>
 
 </sqlMap>
