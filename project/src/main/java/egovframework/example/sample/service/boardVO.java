@@ -2,22 +2,32 @@ package egovframework.example.sample.service;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class boardVO {
 	private int boardID;
 	private String userID;
 	private String title;
 	private String content;
-	private String b_file;
 	private Date regDate;
 	private int viewCnt=0;
 
-	/* memberList에 search를 하기위해 변수 선언( 변수명은 memberList의 name와 같아야 함.) */
+	/* 게시판 검색 및 정렬 하기위해 변수 선언*/
 	private String searchText;
 	private String sortGubun;
 
+	/* 파일 처리를 위한 변수 선언*/
+	private MultipartFile mpfile;
+	private String b_file;
 
 	public String getSortGubun() {
 		return sortGubun;
+	}
+	public MultipartFile getMpfile() {
+		return mpfile;
+	}
+	public void setMpfile(MultipartFile mpfile) {
+		this.mpfile = mpfile;
 	}
 	public void setSortGubun(String sortGubun) {
 		this.sortGubun = sortGubun;

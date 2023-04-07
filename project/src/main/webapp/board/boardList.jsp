@@ -12,8 +12,23 @@
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/board/b_List.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Insert title here</title>
 </head>
+
+<script>
+/*  $(function() {
+
+	    $("#sortGubun").change(function() {
+	        var data = $(this).val();
+	        onclick = "location='boardWrite.do'"
+	    });
+	}); */
+
+
+</script>
+
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>
 	<div id="listDiv">
@@ -21,16 +36,18 @@
 	<div id="nemu_div">
 		<form id="searchFrm" class="nemu__data" name="searchFrm" method="post" action="boardList.do">
 
-			<input type="text" name="searchText" id="searchText" >
+			<input type="text" name="searchText" id="searchText" placeholder="제목">
 			<button type="submit" class="bt_css">검색</button>
 		</form >
+
 		<form id="sortFrm" name="sortFrm" class="nemu__data" method="post" action="boardList.do">
-			<select name="sortGubun" id="sortGubun">
+			<select name="sortGubun" id="sortGubun"" onchange="this.form.submit()">
 					<option value="title">제목순</option>
 					<option value="viewCnt">조회순</option>
 					<option value="regDate">등록 날짜 순</option>
 			</select>
 		</form>
+
 		<button class="bt_css" class="nemu__data"id="nemuButton" onclick = "location='boardWrite.do'"> 글 등록 </button>
 	</div>
 

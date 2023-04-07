@@ -3,9 +3,11 @@ package egovframework.example.sample.web;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.example.sample.service.MemberVO;
 import egovframework.example.sample.service.boardService;
@@ -32,9 +35,9 @@ public class boardController {
 	}
 
 	@RequestMapping(value="/boardWriteSave.do")
-	public String InsertLogin(boardVO vo ) throws Exception{
+	public String InsertLogin(boardVO vo) throws Exception{
 
-		/* 등록 날짜 세팅 */
+		/* 등록 날짜 세팅*/
 		Calendar cal = new GregorianCalendar();
 		Date date = new Date(cal.getTimeInMillis());
 		vo.setRegDate(date);
@@ -44,9 +47,30 @@ public class boardController {
 		return "redirect:boardList.do";
 	}
 
+/*	@RequestMapping(value="/boardWriteSave.do")
+	public String insertBoard(boardVO vo, MultipartHttpServletRequest req) throws Exception{
+		System.out.println("테스트 들어옴");
+		Iterator<String> itr = req.getFileNames();
+		System.out.println("파일 이름-----"+itr);
+
+		 등록 날짜 세팅
+		Calendar cal = new GregorianCalendar();
+		Date date = new Date(cal.getTimeInMillis());
+		vo.setRegDate(date);
+
+		String result = boardService.Insertboard(vo);
+
+		return "redirect:boardList.do";
+	}*/
+
+
+
 	/* 게시글 리스트 */
 	@RequestMapping(value="/boardList.do")
 	public String boardList(boardVO vo, ModelMap model) throws Exception{
+		System.out.println("정렬기준"+vo.getSortGubun());
+
+		System.out.println("검색 내용"+vo.getSearchText());
 
 		List<?> list = boardService.SelectBoardList(vo);
 		model.addAttribute("resultList",list);

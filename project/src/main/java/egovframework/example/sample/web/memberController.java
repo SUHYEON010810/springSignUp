@@ -106,6 +106,7 @@ public class memberController {
 		vo.setStartIndex(startIndex);
 		vo.setEndIndex(endIndex);
 
+
 		List<?> list = memberService.SelectMemberList(vo);
 
 		/* JSP로 데이터 전달

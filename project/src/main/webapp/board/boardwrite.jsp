@@ -17,7 +17,7 @@
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>
 
-		<form name="frm" method="post" action="boardWriteSave.do" id = "frm">
+		<form name="frm" method="post" action="boardWriteSave.do" id = "frm" >
 			<table id="frm_table">
 				<h2>글 등록</h2>
 				<tr>

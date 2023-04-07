@@ -15,7 +15,15 @@
 	<select id="boardDAO.selectList" resultClass="egovMap">
  		SELECT boardID, title, userID, regDate, viewCnt
 		FROM board
-		ORDER BY boardID
+		<isNotNull property="searchText">
+	 		WHERE title LIKE '%'||#searchText#||'%'
+	 	</isNotNull>
+		<isNotNull property="sortGubun">
+	 		ORDER BY #sortGubun#
+	 	</isNotNull>
+	 	<isNull property="sortGubun">
+			ORDER BY boardID
+		</isNull>
 	</select>
 
 	<select id="boardDAO.seleteBoardData" resultClass="boardVO">
