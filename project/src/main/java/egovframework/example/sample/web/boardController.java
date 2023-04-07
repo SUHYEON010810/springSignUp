@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import egovframework.example.sample.service.MemberVO;
 import egovframework.example.sample.service.boardService;
 import egovframework.example.sample.service.boardVO;
 import egovframework.example.sample.service.impl.boardDAO;
@@ -29,6 +30,7 @@ public class boardController {
 	public String boardWrite() {
 		return "board/boardwrite";
 	}
+
 	@RequestMapping(value="/boardWriteSave.do")
 	public String InsertLogin(boardVO vo ) throws Exception{
 
@@ -89,9 +91,21 @@ public class boardController {
 
 	@RequestMapping(value="/boardModify.do")
 	public String boardModify(int boardID, ModelMap model) throws Exception{
-		/*boardVO vo = boardService.seleteBoardData(boardID);
-		model.addAttribute("vo", vo);*/
-		System.out.println("수정 컨트롤러 들어옴 ===================");
+		boardVO vo = boardService.seleteBoardData(boardID);
+		model.addAttribute("vo", vo);
 		return "board/boardModify";
 	}
+
+	@RequestMapping(value="/boardModifySave.do")
+	public String boardModifySave(boardVO vo)throws Exception{
+
+		int result = boardService.updateboard(vo);
+
+		System.out.println(result);
+
+		return "redirect:boardList.do";
+	}
+
+
+
 }

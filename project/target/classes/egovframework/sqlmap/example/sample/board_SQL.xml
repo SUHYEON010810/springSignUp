@@ -32,4 +32,9 @@
 		WHERE boardID = #boardID#
 	</update>
 
+	<update id="boardDAO.updateboard">
+		UPDATE board SET title = #title#, content = #content#, b_file = #b_file#
+		WHERE boardID = #boardID#
+	</update>
+
 </sqlMap>

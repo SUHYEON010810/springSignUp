@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import egovframework.example.sample.service.MemberVO;
 import egovframework.example.sample.service.boardService;
 import egovframework.example.sample.service.boardVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -50,5 +51,13 @@ public class boardServiceImpl extends EgovAbstractServiceImpl implements boardSe
 		// TODO Auto-generated method stub
 		return boardDAO.updateViewCnt(d_vo);
 	}
+
+	@Override
+	public int updateboard(boardVO vo) {
+		// TODO Auto-generated method stub
+		return boardDAO.updateboard(vo);
+	}
+
+
 
 }

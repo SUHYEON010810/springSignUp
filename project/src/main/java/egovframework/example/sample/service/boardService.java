@@ -17,4 +17,6 @@ public interface boardService {
 
 	/* 조회수 증가 */
 	public int updateViewCnt(boardVO d_vo);
+
+	public int updateboard(boardVO vo);
 }
