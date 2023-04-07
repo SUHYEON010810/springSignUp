@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>Insert title here</title>
+<title>게시판</title>
 </head>
 
 <script>

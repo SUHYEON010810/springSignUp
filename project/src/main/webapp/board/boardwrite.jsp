@@ -37,8 +37,10 @@
 					<td> <input type="file" name="b_file" class="input_text" id="b_file" /> </td>
 				</tr>
 				<tr>
-					<td colspan="2" id="frm_button"><button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">글 등록</button>
-					<button type="reset" class="bt_css">취소</button></td>
+					<td colspan="2" id="frm_button">
+						<button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">글 등록</button>
+						<button type="reset" class="bt_css" onclick = "location='boardList.do'">취소</button>
+					</td>
 
 				</tr>
 			</table>

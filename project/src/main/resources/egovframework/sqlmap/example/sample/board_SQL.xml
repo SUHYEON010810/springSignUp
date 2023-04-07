@@ -13,7 +13,7 @@
 
 	<!-- 게시판 목록 -->
 	<select id="boardDAO.selectList" resultClass="egovMap">
- 		SELECT boardID, title, userID, regDate, viewCnt
+ 		SELECT boardID, title, userID, TO_CHAR(regDate, 'yyyy-mm-dd')as regDate, viewCnt
 		FROM board
 		<isNotNull property="searchText">
 	 		WHERE title LIKE '%'||#searchText#||'%'

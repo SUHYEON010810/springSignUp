@@ -38,6 +38,7 @@
 	      <tr>
 	         <td colspan="2" id="frm_button">
 	            <button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
+	            <button type="reset" class="bt_css" onclick = "location='boardList.do'">취소</button>
 	         </td>
 	      </tr>
 	   </table>

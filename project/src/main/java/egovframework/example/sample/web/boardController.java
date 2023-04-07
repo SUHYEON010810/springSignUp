@@ -94,6 +94,7 @@ public class boardController {
 		}
 
 		boardVO vo = boardService.seleteBoardData(boardID);
+
 		model.addAttribute("vo", vo);
 
 		return "board/boardDetail";

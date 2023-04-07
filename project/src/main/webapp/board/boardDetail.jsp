@@ -17,7 +17,7 @@
 </head>
 <script >
    function fn_delete(boardID){
-      if( us5451("정말 삭제하겠습니까? ")){
+      if( confirm ("정말 삭제하겠습니까? ")){
          location="boardDelect.do?boardID="+boardID;
       }
    }
