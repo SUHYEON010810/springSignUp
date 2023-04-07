@@ -19,7 +19,7 @@
 	 		WHERE title LIKE '%'||#searchText#||'%'
 	 	</isNotNull>
 		<isNotNull property="sortGubun">
-	 		ORDER BY #sortGubun#
+	 		ORDER BY $sortGubun$ DESC
 	 	</isNotNull>
 	 	<isNull property="sortGubun">
 			ORDER BY boardID

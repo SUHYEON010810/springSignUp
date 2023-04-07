@@ -69,11 +69,12 @@ public class boardController {
 	@RequestMapping(value="/boardList.do")
 	public String boardList(boardVO vo, ModelMap model) throws Exception{
 		System.out.println("정렬기준"+vo.getSortGubun());
-
 		System.out.println("검색 내용"+vo.getSearchText());
 
 		List<?> list = boardService.SelectBoardList(vo);
 		model.addAttribute("resultList",list);
+
+		System.out.println(list);
 
 
 		return "board/boardList";
