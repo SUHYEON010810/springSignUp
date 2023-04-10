@@ -32,7 +32,7 @@
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>
 	<div id="listDiv">
-		<h2>게시판</h2>
+		<h1>게시판</h1>
 	<div id="nemu_div">
 		<form id="searchFrm" class="nemu__data" name="searchFrm" method="post" action="boardList.do">
 
@@ -51,7 +51,7 @@
 		<button class="bt_css" class="nemu__data"id="nemuButton" onclick = "location='boardWrite.do'"> 글 등록 </button>
 	</div>
 
-
+	<div  style="overflow:auto; width:900px; height:420px;">
     <table>
        <tr>
           <th></th>

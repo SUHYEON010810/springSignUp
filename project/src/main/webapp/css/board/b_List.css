@@ -6,7 +6,7 @@
 
    #nemu_div{
 		width: 100%;
-		margin-bottom:20px;
+		margin-bottom:15px;
    }
    .nemu__data{
    		display: inline;
@@ -17,6 +17,7 @@
    		float: left;
    }
    #sortFrm{
+   		display:inline-block;
 		margin-left:25px;
 		height : 27px;
 		width : 130px;
@@ -26,7 +27,7 @@
    		float: right;
    }
 
-   h2{
+   h1{
    	  color : #586E9E;
       text-align: center;
    }

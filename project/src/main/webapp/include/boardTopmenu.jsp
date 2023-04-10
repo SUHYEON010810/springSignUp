@@ -9,9 +9,9 @@
 	#topmenuDiv{
 		text-align:center;
 		background-color: #D8D8D8;
-		padding-bottom : 50px;
 		margin-bottom : 70px;
-		font-size:20px;
+		font-size:17px;
+		padding : 15px 9px 35px 9px;
 	}
 
 	#topmenuDiv_left{
@@ -20,6 +20,9 @@
 
 	#topmenuDiv_right{
 		float:right;
+	}
+	#left_menu_user{
+		margin-right:10px;
 	}
 
 
@@ -31,7 +34,7 @@
 <body>
 	<div id="topmenuDiv">
 		<div id="topmenuDiv_left">
-			<a href="memberList.do">회원</a>
+			<a href="memberList.do" id="left_menu_user">회원</a>
 			<a href="boardList.do">게시판</a>
 		</div>
 		<div id="topmenuDiv_right">
