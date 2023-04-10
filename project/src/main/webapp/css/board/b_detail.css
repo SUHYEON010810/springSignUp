@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
 
    h2{
    	  color : #586E9E;
@@ -26,6 +25,7 @@
 
    #frm_button{
    		text-align: center;
+   		margin-top :10px;
    }
 
    #pagediv a{
@@ -33,4 +33,9 @@
 	   	outline: none
    		margin-top:5px;
    		text-align:center;
+   }
+
+   #file_input{
+   		width:500px;
+   		height: 25px;
    }

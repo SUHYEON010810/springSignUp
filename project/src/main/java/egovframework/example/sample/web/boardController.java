@@ -95,24 +95,23 @@ public class boardController {
 
 	/* 게시글 상세보기 */
 	@RequestMapping(value="/boardDetail.do")
-		public String boardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
+	public String boardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
 
-			/* 조회수 */
-			viewCnt +=1;
-			d_vo.setViewCnt(viewCnt);
-			int data = boardService.updateViewCnt(d_vo);
-			if (data == 1) {
-				System.out.println("조회수 증가 완료");
-			}else {
-				System.out.println("조회수 증가 실패");
-			}
-
-			boardVO vo = boardService.seleteBoardData(boardID);
-
-			model.addAttribute("vo", vo);
-
-			return "board/boardDetail";
+		/* 조회수 */
+		viewCnt +=1;
+		d_vo.setViewCnt(viewCnt);
+		int data = boardService.updateViewCnt(d_vo);
+		if (data == 1) {
+			System.out.println("조회수 증가 완료");
+		}else {
+			System.out.println("조회수 증가 실패");
 		}
+
+		boardVO vo = boardService.seleteBoardData(boardID);
+		model.addAttribute("vo", vo);
+
+		return "board/boardDetail";
+	}
 
 
 
@@ -126,6 +125,7 @@ public class boardController {
 		}else {
 			System.out.println("삭제 실패");
 		}
+		System.out.println("redirect 사용 전 ==========");
 
 		return "redirect:boardList.do";
 	}

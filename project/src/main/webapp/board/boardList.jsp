@@ -10,7 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
-<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/board/b_List.css">
+<!-- board css 적용 안됨 -->
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/b_List.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -32,48 +33,49 @@
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>
 	<div id="listDiv">
-		<h1>게시판</h1>
-	<div id="nemu_div">
-		<form id="searchFrm" class="nemu__data" name="searchFrm" method="post" action="boardList.do">
+		<h2>게시판</h2>
+		<div id="nemu_div">
+			<form id="searchFrm" class="nemu__data" name="searchFrm" method="post" action="boardList.do">
 
-			<input type="text" name="searchText" id="searchText" placeholder="제목">
-			<button type="submit" class="bt_css">검색</button>
-		</form >
+				<input type="text" name="searchText" id="searchText" placeholder="제목">
+				<button type="submit" class="bt_css">검색</button>
+			</form >
 
-		<form id="sortFrm" name="sortFrm" class="nemu__data" method="post" action="boardList.do">
-			<select name="sortGubun" id="sortGubun"" onchange="this.form.submit()">
-					<option value="title">제목순</option>
-					<option value="viewCnt">조회순</option>
-					<option value="regDate">등록 날짜 순</option>
-			</select>
-		</form>
+			<form id="sortFrm" name="sortFrm" class="nemu__data" method="post" action="boardList.do">
+				<select name="sortGubun" id="sortGubun"" onchange="this.form.submit()">
+						<option value="title">제목순</option>
+						<option value="viewCnt">조회순</option>
+						<option value="regDate">등록 날짜 순</option>
+				</select>
+			</form>
 
-		<button class="bt_css" class="nemu__data"id="nemuButton" onclick = "location='boardWrite.do'"> 글 등록 </button>
-	</div>
+			<button class="bt_css" class="nemu__data"id="nemuButton" onclick = "location='boardWrite.do'"> 글 등록 </button>
+		</div>
 
-	<div  style="overflow:auto; width:900px; height:420px;">
-    <table>
-       <tr>
-          <th></th>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>등록날짜</th>
-          <th>조회수</th>
-       </tr>
-       <!-- 반복문 -->
-       <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
-       <c:forEach var="result" items="${resultList}" varStatus="status">
+		<div  style="overflow:auto; width:900px; height:420px;">
+	    <table>
+	       <tr>
+	          <th></th>
+	          <th>제목</th>
+	          <th>작성자</th>
+	          <th>등록날짜</th>
+	          <th>조회수</th>
+	       </tr>
+	       <!-- 반복문 -->
+	       <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
+	       <c:forEach var="result" items="${resultList}" varStatus="status">
 
-          <tr>
-          	<td>${ status.count }</td>
-             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}"> ${ result.title } </a> </td>
-             <td>${ result.userid }</td>
+	          <tr>
+	          	<td>${ status.count }</td>
+	             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}"> ${ result.title } </a> </td>
+	             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}">${ result.userid } </a> </td>
 
-             <td>${ result.regdate }</td>
-             <td>${ result.viewcnt }</td>
-          </tr>
-       </c:forEach>
-    </table>
+	             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}">${ result.regdate } </a> </td>
+	             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}">${ result.viewcnt } </a> </td>
+	          </tr>
+	       </c:forEach>
+	    </table>
+		</div>
 	</div>
 
 </body>
