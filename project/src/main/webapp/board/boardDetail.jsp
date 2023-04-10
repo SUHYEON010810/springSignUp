@@ -39,6 +39,7 @@
 			<td > <label for="content" >내용</label> </td>
 			<td> ${vo.content} </td>
 		</tr>
+
 		<tr>
 			<td> <label for="b_file" >파일</label> </td>
 			<td> ${ vo.b_file } </td>

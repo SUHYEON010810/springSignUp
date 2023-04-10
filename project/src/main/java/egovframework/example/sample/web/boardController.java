@@ -1,20 +1,25 @@
 package egovframework.example.sample.web;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.example.sample.service.MemberVO;
@@ -29,13 +34,26 @@ public class boardController {
 	private boardService boardService;
 
 	/* 게시글 등록 및 저장 */
-	@RequestMapping(value="boardWrite")
+	@RequestMapping(value="boardWrite.do")
 	public String boardWrite() {
 		return "board/boardwrite";
 	}
 
 	@RequestMapping(value="/boardWriteSave.do")
-	public String InsertLogin(boardVO vo) throws Exception{
+	public String InsertLogin(@ModelAttribute("boardVO") boardVO vo ) throws Exception{
+
+		String fileName = null;
+		MultipartFile uploadFile  = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid + "." +ext;
+			uploadFile.transferTo(new File("D:\\upload\\"+fileName));
+		}
+
+		vo.setB_file(fileName);
+		System.out.println("파일======="+vo.getB_file());
 
 		/* 등록 날짜 세팅*/
 		Calendar cal = new GregorianCalendar();
@@ -43,25 +61,14 @@ public class boardController {
 		vo.setRegDate(date);
 
 		String result = boardService.Insertboard(vo);
+		if(result == "1") {
+			System.out.println("등록 완료");
+		}else {
+			System.out.println("등록실패");
+		}
 
 		return "redirect:boardList.do";
 	}
-
-/*	@RequestMapping(value="/boardWriteSave.do")
-	public String insertBoard(boardVO vo, MultipartHttpServletRequest req) throws Exception{
-		System.out.println("테스트 들어옴");
-		Iterator<String> itr = req.getFileNames();
-		System.out.println("파일 이름-----"+itr);
-
-		 등록 날짜 세팅
-		Calendar cal = new GregorianCalendar();
-		Date date = new Date(cal.getTimeInMillis());
-		vo.setRegDate(date);
-
-		String result = boardService.Insertboard(vo);
-
-		return "redirect:boardList.do";
-	}*/
 
 
 

@@ -20,7 +20,7 @@
 			<value>60</value>
 		</property>
 	</bean>
-	
+
 	<bean id="leaveaTrace" class="egovframework.rte.fdl.cmmn.trace.LeaveaTrace">
 		<property name="traceHandlerServices">
 			<list>
@@ -44,8 +44,8 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="antPathMater" class="org.springframework.util.AntPathMatcher" />
 	<bean id="defaultTraceHandler" class="egovframework.rte.fdl.cmmn.trace.handler.DefaultTraceHandler" />
-	 
+
 </beans>

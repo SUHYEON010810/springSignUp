@@ -17,17 +17,23 @@ public class boardVO {
 	private String sortGubun;
 
 	/* 파일 처리를 위한 변수 선언*/
-	private MultipartFile mpfile;
+	private MultipartFile uploadFile;
 	private String b_file;
 
+	public String getB_file() {
+		return b_file;
+	}
+	public void setB_file(String b_file) {
+		this.b_file = b_file;
+	}
 	public String getSortGubun() {
 		return sortGubun;
 	}
-	public MultipartFile getMpfile() {
-		return mpfile;
+	public MultipartFile getUploadFile() {
+		return uploadFile;
 	}
-	public void setMpfile(MultipartFile mpfile) {
-		this.mpfile = mpfile;
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
 	public void setSortGubun(String sortGubun) {
 		this.sortGubun = sortGubun;
@@ -62,12 +68,7 @@ public class boardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getB_file() {
-		return b_file;
-	}
-	public void setB_file(String b_file) {
-		this.b_file = b_file;
-	}
+
 	public Date getRegDate() {
 		return regDate;
 	}
