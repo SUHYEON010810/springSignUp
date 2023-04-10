@@ -24,32 +24,34 @@
 </script>
 <body>
 <%@ include file="../include/boardTopmenu.jsp" %>
-
-	<table id="frm_table">
-		<h2>상세보기</h2>
-		<tr>
-			<td style="width:25%;"> <label for="uID" >작성자</label> </td>
-			<td> ${vo.userID } </td>
-		</tr>
-		<tr>
-			<td> <label for="title" >제목</label> </td>
-			<td>${ vo.title }</td>
-		</tr>
-		<tr style="height:200px;">
-			<td > <label for="content" >내용</label> </td>
-			<td> ${vo.content} </td>
-		</tr>
-
-		<tr>
-			<td> <label for="b_file" >파일</label> </td>
-			<td> ${ vo.b_file } </td>
-		</tr>
-		<tr>
-			<td colspan="2" id="frm_button">
-				<button type="button" onclick="location='boardModify.do?boardID=${vo.boardID}'" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
-				<button class="bt_css" onclick="fn_delete('${vo.boardID}')">삭제</button>
-			</td>
-		</tr>
-	</table>
+	<form action="boardModify.do" encType="multipart/form-data" method="post">
+		<table id="frm_table">
+			<h2>상세보기</h2>
+			<tr>
+				<td style="width:25%;"> <label for="uID" >작성자</label> </td>
+				<td> ${vo.userID } </td>
+			</tr>
+			<tr>
+				<td> <label for="title" >제목</label> </td>
+				<td>${ vo.title }</td>
+			</tr>
+			<tr style="height:200px;">
+				<td > <label for="content" >내용</label> </td>
+				<td> ${vo.content} </td>
+			</tr>
+			<c:if test="${vo.b_file ne null}">
+				<tr>
+					<td> <label for="b_file" >파일</label> </td>
+					<td><a href="fileDownload.do?b_file=${vo.b_file}" ><input type="text" id="b_file" value="${vo.b_file}" name="b_file" readonly="readonly" /></a></td>
+				</tr>
+			</c:if>
+			<tr>
+				<td colspan="2" id="frm_button">
+					<button type="button" onclick="location='boardModify.do?boardID=${vo.boardID}'" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
+					<button class="bt_css" onclick="fn_delete('${vo.boardID}')">삭제</button>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

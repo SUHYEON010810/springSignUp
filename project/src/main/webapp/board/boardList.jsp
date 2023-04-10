@@ -66,7 +66,7 @@
 
           <tr>
           	<td>${ status.count }</td>
-             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}"> ${ result.title } </a> </td>
+             <td><a href="boardDetail.do?boardID=${result.boardid}&viewCnt=${result.viewcnt}&b_file=${result.bFile}"> ${ result.title } </a> </td>
              <td>${ result.userid }</td>
 
              <td>${ result.regdate }</td>

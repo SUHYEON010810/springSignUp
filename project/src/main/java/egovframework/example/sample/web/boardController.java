@@ -1,6 +1,10 @@
 package egovframework.example.sample.web;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -10,6 +14,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
@@ -40,7 +45,7 @@ public class boardController {
 	}
 
 	@RequestMapping(value="/boardWriteSave.do")
-	public String InsertLogin(@ModelAttribute("boardVO") boardVO vo ) throws Exception{
+	public String InsertLogin(@ModelAttribute("testVo") boardVO vo, MultipartHttpServletRequest req ) throws Exception{
 
 		String fileName = null;
 		MultipartFile uploadFile  = vo.getUploadFile();
@@ -48,8 +53,8 @@ public class boardController {
 			String originalFileName = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFileName);
 			UUID uuid = UUID.randomUUID();
-			fileName = uuid + "." +ext;
-			uploadFile.transferTo(new File("D:\\upload\\"+fileName));
+			fileName =  uuid + "." + ext;
+			uploadFile.transferTo(new File("D:\\upload\\" + fileName));
 		}
 
 		vo.setB_file(fileName);
@@ -79,6 +84,7 @@ public class boardController {
 		System.out.println("검색 내용"+vo.getSearchText());
 
 		List<?> list = boardService.SelectBoardList(vo);
+		System.out.println("리스트 ==== "+list);
 		model.addAttribute("resultList",list);
 
 		System.out.println(list);
@@ -89,23 +95,26 @@ public class boardController {
 
 	/* 게시글 상세보기 */
 	@RequestMapping(value="/boardDetail.do")
-	public String boardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
-		/* 조회수 */
-		viewCnt +=1;
-		d_vo.setViewCnt(viewCnt);
-		int data = boardService.updateViewCnt(d_vo);
-		if (data == 1) {
-			System.out.println("조회수 증가 완료");
-		}else {
-			System.out.println("조회수 증가 실패");
+		public String boardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
+
+			/* 조회수 */
+			viewCnt +=1;
+			d_vo.setViewCnt(viewCnt);
+			int data = boardService.updateViewCnt(d_vo);
+			if (data == 1) {
+				System.out.println("조회수 증가 완료");
+			}else {
+				System.out.println("조회수 증가 실패");
+			}
+
+			boardVO vo = boardService.seleteBoardData(boardID);
+
+			model.addAttribute("vo", vo);
+
+			return "board/boardDetail";
 		}
 
-		boardVO vo = boardService.seleteBoardData(boardID);
 
-		model.addAttribute("vo", vo);
-
-		return "board/boardDetail";
-	}
 
 	/* 게시글 삭제 */
 	@RequestMapping(value="/boardDelect.do")
@@ -117,7 +126,6 @@ public class boardController {
 		}else {
 			System.out.println("삭제 실패");
 		}
-
 
 		return "redirect:boardList.do";
 	}
@@ -137,6 +145,60 @@ public class boardController {
 		System.out.println(result);
 
 		return "redirect:boardList.do";
+	}
+
+	/* 파일 다운로드 */
+	@RequestMapping(value = "fileDownload.do")
+    public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		System.out.println("파일 다운로드 시작");
+
+		String b_file = request.getParameter("b_file");
+		System.out.println("파일이름 ========>"+b_file);
+		String realFilename = "";
+
+        try {
+           String browser = request.getHeader("User-Agent");  // 유저의 시스템 정보
+
+            if (browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")) {
+               b_file = URLEncoder.encode(b_file, "UTF-8").replaceAll("\\+", "%20");
+            } else {
+                    b_file = new String(b_file.getBytes("UTF-8"), "ISO-8859-1");
+            }
+
+
+        realFilename = "D:\\upload\\" + b_file;
+        System.out.println(realFilename);
+
+        File file = new File(realFilename);
+        	if (!file.exists()) { //파일이 존재하는지 확인
+        		System.out.println("파일 존재 x");
+        		return;
+        	}
+
+        	response.setContentType("application/octer-stream");
+            response.setHeader("Content-Transfer-Encoding", "binary");
+        	response.setHeader("Content-Disposition", "attachment; fileName=\"" + b_file + "\"");
+        	System.out.println("b_file =====> "+b_file);
+
+
+            OutputStream out = response.getOutputStream();
+            FileInputStream fis = new FileInputStream(realFilename);
+
+            int cnt = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((cnt = fis.read(bytes)) != -1) {
+            	out.write(bytes, 0, cnt);
+            }
+
+            fis.close();
+            out.close();
+        }catch(UnsupportedEncodingException e) {
+            System.out.println("UnsupportedEncodingException 발생");
+        }
+
+
 	}
 
 
