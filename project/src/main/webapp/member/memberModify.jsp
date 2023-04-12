@@ -21,7 +21,7 @@
 	<%@ include file="../include/boardTopmenu.jsp" %>
 
 	<form name="frm" method="post" action="memberModifySave.do" id = "frm" style="padding-top : 40px;" >
-		<h2>BUMIL</h2>
+		<h2>회원 수정</h2>
 		<table>
 			<tr>
 				<td>

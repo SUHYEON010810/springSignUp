@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/mbList.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
-<title>Member List</title>
+<title>회원 목록</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

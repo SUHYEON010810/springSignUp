@@ -54,16 +54,16 @@ public class memberController {
 
 	/* 회원가입 데이터 등록 */
 	@RequestMapping(value="/signUpWriteSave.do")
-	public String InsertLogin(MemberVO vo, HttpSession session) throws Exception{
+	public String InsertLogin(MemberVO vo) throws Exception{
 
 			String result = memberService.InsertMember(vo);
 			if(result == null) {
-				session.setAttribute("SessionUserID", vo.getUserID());
+
 				System.out.println("저장 완료");
 			}else {
 				System.out.println("저장 실패");
 			}
-		return "redirect:memberList.do";
+		return "redirect:loginWrite.do";
 	}
 
 	/*	 아이디 중복 체크 */
@@ -140,17 +140,29 @@ public class memberController {
 
 	/*회원 삭제*/
 	@RequestMapping(value="/memberDelect.do")
-	public String deleteMember(String userid)throws Exception{
+	public String deleteMember(String userid, HttpSession session)throws Exception{
+		//삭제하는 회원이 로그인한 유저일 경우 세션 제거
+		String login_user = (String) session.getAttribute("SessionUserID");
+		String returnUrl = "";
 
+		if( login_user.equals(userid)) {
+			session.removeAttribute("SessionUserID");
+			returnUrl = "member/loginWrite";
+		}else {
+			returnUrl ="redirect:memberList.do";
+		}
+
+		//데이터 삭제
 		int result = memberService.deleteMember(userid);
 		if(result == 1) {
 			System.out.println("삭제 완료");
+
 		}else {
 			System.out.println("삭제 실패");
 		}
 
 
-		return "redirect:memberList.do";
+		return returnUrl;
 	}
 
 

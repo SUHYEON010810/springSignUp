@@ -41,6 +41,7 @@
 			<% if(USERID == null){ %>
 				<a class="topMenuA" href="/project/loginWrite.do">로그인</a>
 			<% }else{ %>
+				<label style="font-size:12px; color:#6E6E6E; margin-right:10px;"><%= USERID %>님 환영합니다.</label>
 				<a class="topMenuA" href="/project/logout.do"> 로그아웃</a>
 			<%} %>
 		</div>

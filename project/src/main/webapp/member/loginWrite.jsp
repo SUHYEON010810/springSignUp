@@ -51,7 +51,7 @@
  </script>
 </head>
 <body>
-	<form name="frm" method="post" id = "frm">
+	<form name="frm" method="post" id = "frm" style="margin-top:80px;">
 		<h2>로그인</h2>
 		<div id = "inputDiv">
 			<input type="text" name="userID" id="userID" placeholder="아이디">

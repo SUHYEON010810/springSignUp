@@ -43,9 +43,10 @@
 
 			<form id="sortFrm" name="sortFrm" class="nemu__data" method="post" action="boardList.do">
 				<select name="sortGubun" id="sortGubun"" onchange="this.form.submit()">
-						<option value="title">제목순</option>
+						<option>정렬하기</option>
 						<option value="viewCnt">조회순</option>
 						<option value="regDate">등록 날짜 순</option>
+						<option value="title">제목순</option>
 				</select>
 			</form>
 

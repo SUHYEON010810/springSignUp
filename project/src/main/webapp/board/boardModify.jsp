@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/reset.css">
-<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/board/b_detail.css">
+<link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/board/b_Modify.css">
 <link rel="stylesheet" type="text/css" href = " ${pageContext.request.contextPath}/css/memberTable/buttonStyle.css">
 <title>수정</title>
 </head>
@@ -17,7 +17,7 @@
    	<%@ include file="../include/boardTopmenu.jsp" %>
 	<form name="frm" method="post" action="boardModifySave.do" id = "frm">
  	  	<table id="frm_table">
-	      <h2>상세보기</h2>
+	      <h2>수정</h2>
 	      <tr>
 	         <td style="width:25%;"> <label for="uID" >작성자</label> </td>
 	         <td>${vo.userID }</td>
@@ -31,10 +31,20 @@
 	         <td><textarea cols="50" rows="10" name="content" id="content" >${vo.content}</textarea>  </td>
 	      </tr>
 	      <tr>
-	         <td> <label for="b_file" >파일</label> </td>
-	         <td>  <input type="file" value="${ vo.b_file }" name="b_file" class="input_text" id="b_file" /></td>
-	         <td><input type="hidden" name="boardID" value="${ vo.boardID }"></td>
-	      </tr>
+				<td> <label for="b_file" >파일</label> </td>
+	      <c:choose>
+	      	<c:when test="${vo.b_file eq null}">
+	      		<td> <input type="file" name="uploadFile" class="input_text" id="uploadFile" /> </td>
+	      		</tr>
+	      	</c:when>
+	      	<c:when test="${vo.b_file ne null}">
+	      		<td>
+					<input type="text" id="b_file" value="${vo.b_file}" name="b_file" id="file" readonly="readonly" />
+					<button type="button" id="fileDelete">삭제</button>
+				</td>
+					</tr>
+	      	</c:when>
+	      </c:choose>
 	      <tr>
 	         <td colspan="2" id="frm_button">
 	            <button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>

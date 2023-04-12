@@ -105,7 +105,7 @@
 </script>
 <body>
 	<form name="frm" method="post" action="signUpWriteSave.do" id = "frm">
-		<h2>BUMIL</h2>
+		<h2>회원가입</h2>
 		<table>
 			<tr>
 				<td>
