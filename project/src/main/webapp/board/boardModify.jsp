@@ -41,6 +41,7 @@
 	      		<td>
 					<input type="text" id="b_file" value="${vo.b_file}" name="b_file" id="file" readonly="readonly" />
 					<button type="button" id="fileDelete">삭제</button>
+					  <td><input type="hidden" name="boardID" value="${ vo.boardID }"></td>
 				</td>
 					</tr>
 	      	</c:when>

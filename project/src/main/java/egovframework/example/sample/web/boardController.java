@@ -137,10 +137,15 @@ public class boardController {
 		return "board/boardModify";
 	}
 
+	//파일 수정
 	@RequestMapping(value="/boardModifySave.do")
 	public String boardModifySave(boardVO vo)throws Exception{
-
 		int result = boardService.updateboard(vo);
+		if(result == 1) {
+			System.out.println("수정 완료");
+		}else {
+			System.out.println("수정 실패");
+		}
 
 		System.out.println(result);
 
