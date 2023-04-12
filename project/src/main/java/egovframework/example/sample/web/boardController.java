@@ -208,4 +208,68 @@ public class boardController {
 
 
 
+	///////////////////////////////
+
+
+	/* 사용자 글 리스트*/
+	@RequestMapping(value="/userBoardList.do")
+	public String userboardinsert(boardVO vo, ModelMap model)throws Exception{
+		System.out.println("정렬기준"+vo.getSortGubun());
+		System.out.println("검색 내용"+vo.getSearchText());
+
+		List<?> list = boardService.SelectBoardList(vo);
+		System.out.println("리스트 ==== "+list);
+		model.addAttribute("resultList",list);
+
+		System.out.println(list);
+		return "userBoard/userBoardList";
+
+	}
+	@ResponseBody
+	@RequestMapping(value="/userboardDet.do")
+	public String userboardDet(String userid, int viewCnt) throws Exception{
+		String message = "";
+
+		System.out.println(userid);
+		System.out.println("조회수===="+viewCnt);
+		int count=0;
+		/*int count = memberService.idcheck(userid);*/
+		if(count == 0) {
+
+			message = "ok";
+		}
+		return message;
+	}
+	/*사용자 상세보기*/
+	@ResponseBody
+	@RequestMapping(value="userboardDetail.do")
+	public String userboardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) {
+		System.out.println("디테일 들어옴");
+
+
+		return "";
+	}
+
+	/*@RequestMapping(value="/userboardDetail.do")
+	public String userboardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
+		System.out.println("디테일 들어옴 ");
+		return"";
+		System.out.println("id ==== "+boardID+"cnt ==== "+viewCnt);
+		 조회수
+		viewCnt +=1;
+		d_vo.setViewCnt(viewCnt);
+		int data = boardService.updateViewCnt(d_vo);
+		if (data == 1) {
+			System.out.println("조회수 증가 완료");
+		}else {
+			System.out.println("조회수 증가 실패");
+		}
+
+		boardVO vo = boardService.seleteBoardData(boardID);
+		model.addAttribute("vo", vo);
+
+		return "aa";
+	}*/
+
+
 }

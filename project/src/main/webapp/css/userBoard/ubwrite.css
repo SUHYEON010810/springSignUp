@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#listDiv{
+   		padding:0px 400px;
+   }
+
+   h2{
+   	  color : #586E9E;
+   }
+
+   table{
+      width:100%;
+      border-collapse:collapse;
+      margin-left:auto;
+      margin-right:auto;
+   }
+
+   th, td{
+      border : 1px solid #cccccc;
+      padding:5px;
+      text-align: center;
+   }
+
+   tr{
+   		height:32px;
+   }
+
+
+   button{
+      display:inline;
+   }
+
+   #pagediv a{
+   		text-decoration: none;
+	   	outline: none
+   		margin-top:5px;
+   		text-align:center;
+   }
