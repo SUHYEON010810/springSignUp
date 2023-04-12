@@ -11,6 +11,7 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
 
  <script>
  	$(function(){
@@ -34,8 +35,10 @@
  		   		   dataType : "text",
 
  		            success: function(result){
- 		            	if(result == "ok"){
+ 		            	if(result == "manager"){
  		            		location="memberList.do"
+ 		            	}else if(result == "user"){
+ 		            		location="boardList.do"
  		            	}else{
  		            		alert("로그인 정보가 잘못되었습니다.");
  		            	}
@@ -49,7 +52,6 @@
  	    })
  	})
  </script>
-</head>
 <body>
 	<form name="frm" method="post" id = "frm" style="margin-top:80px;">
 		<h2>로그인</h2>

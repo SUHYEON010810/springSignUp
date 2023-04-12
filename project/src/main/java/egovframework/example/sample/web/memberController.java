@@ -35,13 +35,22 @@ public class memberController {
 		String mesage = "";
 		int result = memberService.selectlogin(vo);
 
+		int div = memberService.selectmem_div(vo.getUserID());
+
 		if(result == 1) {
 			session.setAttribute("SessionUserID", vo.getUserID());
+			session.setAttribute("division", div);
 
-			mesage = "ok";
+			if(div == 0) {
+				//관리자
+				mesage = "manager";
+			}else {
+				//사용자
+				mesage = "user";
+			}
+		}else {
+			mesage="n";
 		}
-		System.out.println("데이터 ==== "+result);
-
 
 		return mesage;
 	}
@@ -56,9 +65,10 @@ public class memberController {
 	@RequestMapping(value="/signUpWriteSave.do")
 	public String InsertLogin(MemberVO vo) throws Exception{
 
+			System.out.println("데이터 ===> "+vo.toString());
+
 			String result = memberService.InsertMember(vo);
 			if(result == null) {
-
 				System.out.println("저장 완료");
 			}else {
 				System.out.println("저장 실패");
@@ -84,6 +94,7 @@ public class memberController {
 	@RequestMapping(value="/logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("SessionUserID");
+		session.removeAttribute("division");
 
 		return "member/loginWrite";
 	}

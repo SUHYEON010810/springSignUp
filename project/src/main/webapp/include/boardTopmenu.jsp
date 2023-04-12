@@ -23,6 +23,7 @@
 	}
 	#left_menu_user{
 		margin-right:10px;
+
 	}
 
 
@@ -30,6 +31,14 @@
 </head>
 <%
 	String USERID = (String) session.getAttribute("SessionUserID");
+	int session_division = (Integer) session.getAttribute("division");
+	String division = "";
+	if(session_division == 0){
+		division = "관리자";
+	}else{
+		division = "사용자";
+	}
+
 %>
 <body>
 	<div id="topmenuDiv">
@@ -41,10 +50,13 @@
 			<% if(USERID == null){ %>
 				<a class="topMenuA" href="/project/loginWrite.do">로그인</a>
 			<% }else{ %>
+
+				<label style="font-size:12px; color:#6E6E6E; margin-right:10px;"><%= division %></label>
 				<label style="font-size:12px; color:#6E6E6E; margin-right:10px;"><%= USERID %>님 환영합니다.</label>
 				<a class="topMenuA" href="/project/logout.do"> 로그아웃</a>
 			<%} %>
 		</div>
+
 	</div>
 </body>
 </html>

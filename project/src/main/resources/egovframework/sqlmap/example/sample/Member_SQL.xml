@@ -14,12 +14,18 @@
 
 	<!-- 회원 등록 -->
 	<insert id="memberDAO.insertMember">
-		INSERT INTO member(USERID, password, name, phone) values(#userID#, #password#, #name#, #phone#)
+		INSERT INTO member(USERID, password, name, phone, mem_div) values(#userID#, #password#, #name#, #phone#, #mem_div#)
 	</insert>
 
 	<!-- 아이디 체크 -->
 	<select id="memberDAO.idcheck"  resultClass="int">
 		SELECT COUNT(*) FROM member
+		WHERE USERID = #userID#
+	</select>
+
+	<!-- 회원 구분 -->
+	<select id="MemberVO.selectmem_div" resultClass="int">
+		SELECT mem_div FROM member
 		WHERE USERID = #userID#
 	</select>
 

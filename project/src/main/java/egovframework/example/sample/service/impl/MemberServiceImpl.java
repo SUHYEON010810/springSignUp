@@ -74,6 +74,12 @@ public class MemberServiceImpl extends EgovAbstractServiceImpl implements Member
 		return memberDAO.selectTotal(vo);
 	}
 
+	@Override
+	public int selectmem_div(String userID) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectmem_div(userID);
+	}
+
 
 
 

@@ -26,4 +26,6 @@ public interface MemberService {
 
 	/* Total 개수 */
 	public int selectTotal(MemberVO vo) throws Exception;
+
+	public int selectmem_div(String userID);
 }

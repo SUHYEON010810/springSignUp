@@ -133,7 +133,14 @@
 			<tr>
                 <td> <input type="text" name="phone"  id="tel_ch" class="input_text"  placeholder="전화번호" required maxlength="13"/></td>
             </tr>
-            </tr>
+           <tr>
+           		<td>
+	           		<select name="mem_div" id="mem_div"">
+							<option value="1">사용자</option>
+							<option value="0">관리자</option>
+					</select>
+				</td>
+           </tr>
 			<tr>
 				<td>
 					<button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">회원가입</button>

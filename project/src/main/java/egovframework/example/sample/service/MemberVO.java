@@ -7,6 +7,7 @@ public class MemberVO {
 	private String password;
 	private String name;
 	private String phone;
+	private int mem_div;
 
 	/* memberList에 search를 하기위해 변수 선언( 변수명은 memberList의 name와 같아야 함.) */
 	private String searchGubun;
@@ -76,6 +77,20 @@ public class MemberVO {
 	public void setEndIndex(int endIndex) {
 		this.endIndex = endIndex;
 	}
+	public int getMem_div() {
+		return mem_div;
+	}
+	public void setMem_div(int mem_div) {
+		this.mem_div = mem_div;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [userID=" + userID + ", password=" + password + ", name=" + name + ", phone=" + phone
+				+ ", mem_div=" + mem_div + ", searchGubun=" + searchGubun + ", searchText=" + searchText + ", viewPage="
+				+ viewPage + ", startIndex=" + startIndex + ", endIndex=" + endIndex + "]";
+	}
+
 
 
 /*	public LocalDate getUdate() {

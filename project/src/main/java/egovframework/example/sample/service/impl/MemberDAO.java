@@ -59,6 +59,11 @@ public class MemberDAO extends EgovAbstractDAO{
 		return (int) select("MemberVO.selectTotal", vo);
 	}
 
+	public int selectmem_div(String userID) {
+		// TODO Auto-generated method stub
+		return (int) select("MemberVO.selectmem_div", userID);
+	}
+
 
 
 
