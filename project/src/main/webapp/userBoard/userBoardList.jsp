@@ -20,66 +20,47 @@
  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <script>
-	$(function(){
-		/* $(".userboarda").bind("click",function(e){
-			alert("dd");
+function userdetail(boardid, viewcnt, bFile){
+	$.ajax({
+		url : "userboardDet.do",
+		type: "get",
+		data : { "boardid" : boardid,
+				"viewcnt" : viewcnt
+		},
+		success : function(responseData){
+			$("#ajax").remove();
+			var data = JSON.parse(responseData);
 
-		}) */
 
+			var html = ''
+			html += '<form action="" id="ajax" method="post" >';
+			html += '<table id="frm_table">';
+			html += '<h2>상세보기</h2>'
+
+
+			html += '<tr>';
+			html += '<td style="width:25%;"><label for="uID" >작성자</label></td>';
+			html += '<td>' + data.userID + '</td>';
+			html += '</tr>';
+
+			html += '<tr>';
+			html += '<td> <label for="title" >제목</label> </td>'
+			html += '<td>' + data.title + '</td>';
+			html += '</tr>';
+
+			html += '<tr style="height:200px;">';
+			html += '<td > <label for="content" >내용</label> </td>'
+			html += '<td >' + data.content + '</td>';
+			html += '</tr>';
+
+			html += '</table>';
+			html += '</form>';
+			$("#user_board_detail").after(html);
+		}
 
 	})
-	function userdetail(boardid, viewcnt, bFile){
-		const userdetail = document.getElementById('userboarddetail');
-
-		 $.ajax({
-			   /* 전송 전 세팅 */
-			   type : "POST",
-			   data : {
-				   "boardID":boardid,
-				   "viewCnt":viewcnt
-				   },
-	           url : "userboardDet.do",
-	   		   dataType : "text",
-
-	            success: function(result){
-	            	if(result == "ok"){
-	            		alert("성공");
-
-
-	            		$('#user_board_detail tbody').html(''); // 일단 비워
-
-	            		if(result.length >0) { //값을 받아오면 0보단 커지지
-	 	                    var detail_rt =  // tbody 내부에 넣을 html코드 작성
-	 	                    '<tr>' +
-	 	                    	'<td style="width:25%;"><label for="uID" >작성자</label></td>' +
-	 	                    	'<td>' + ${ title } + '</td>'+
-	 	                    '<tr>' +
-	 	                    '<tr>' +
-	 	                    	'<td style="width:25%;"><label for="title">제목</label></td>' +
-	 	                    	'<td>' + ${ vo.title }+ '</td>'+
-	                     	'<tr>';
-
-	 	                    $('#user_board_detail tbody').append(detail_rt);
-	 	                    console.log(success);
-	            		 }
-
-
-
-
-	            		user_board_detail.style.display = 'block';
-	            	}else{
-	            		alert("실패");
-	            	}
-	            },
-	            error: function(){
-	            	alert("오류발생");
-	            }
-	         })
-
-
-
-
-	 }
+	$("#frm_button").css("display","block");
+}
 
 </script>
 <body>
@@ -87,7 +68,7 @@
 	<div id="listDiv">
 		<h2>게시판</h2>
 		<div  style="overflow:auto; width:100%; height:193px;">
-	    <table>
+	    <table id = "listTable">
 	       <tr>
 	          <th></th>
 	          <th>제목</th>
@@ -100,8 +81,8 @@
 	       <c:forEach var="result" items="${resultList}" varStatus="status">
 
 	          <tr>
-	          	<td>${ status.count }</td>
-	             <td><a href="javascript:void(0);" id = "userboarddetail" onclick="userdetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')"> ${ result.title } </a> </td>
+	          	<td> ${ status.count }</td>
+	             <td><a href="javascript:void(0);" class="atag" onclick="userdetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')" > ${ result.title } </a> </td>
 	             <td>${ result.userid }  </td>
 
 	             <td>${ result.regdate }  </td>
@@ -111,27 +92,16 @@
 	    </table>
 		</div>
 
-		<div id="user_board_detail" style="display:none">
-			<form action="boardModify.do" encType="multipart/form-data" method="post" >
-				<table id="frm_table">
-					<h2>상세보기</h2>
-					<tbody>
-	               <!-- js 로 넣을 공간 -->
-	               </tbody>
-				</table>
-			</form>
-			 <div  id="frm_button">
+		<div id="user_board_detail">
+
+
+		</div>
+		<div  id="frm_button"  style="display:none; text-align:center">
 		     	<button type="button" onclick="location='boardModify.do?boardID=${vo.boardID}'" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
 				<button class="bt_css" onclick="fn_delete('${vo.boardID}')">삭제</button>
-			</div>
-		</div>
-
-		<div>
-
 		</div>
 
 	</div>
-
 
 </body>
 

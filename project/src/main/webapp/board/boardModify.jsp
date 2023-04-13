@@ -17,7 +17,7 @@
    	<%@ include file="../include/boardTopmenu.jsp" %>
 	<form name="frm" method="post" action="boardModifySave.do" id = "frm">
  	  	<table id="frm_table">
-	      <h2>수정</h2>
+	      <h2>상세보기</h2>
 	      <tr>
 	         <td style="width:25%;"> <label for="uID" >작성자</label> </td>
 	         <td>${vo.userID }</td>
@@ -31,25 +31,13 @@
 	         <td><textarea cols="50" rows="10" name="content" id="content" >${vo.content}</textarea>  </td>
 	      </tr>
 	      <tr>
-				<td> <label for="b_file" >파일</label> </td>
-	      <c:choose>
-	      	<c:when test="${vo.b_file eq null}">
-	      		<td> <input type="file" name="uploadFile" class="input_text" id="uploadFile" /> </td>
-	      		</tr>
-	      	</c:when>
-	      	<c:when test="${vo.b_file ne null}">
-	      		<td>
-					<input type="text" id="b_file" value="${vo.b_file}" name="b_file" id="file" readonly="readonly" />
-					<button type="button" id="fileDelete">삭제</button>
-					  <td><input type="hidden" name="boardID" value="${ vo.boardID }"></td>
-				</td>
-					</tr>
-	      	</c:when>
-	      </c:choose>
+	         <td> <label for="b_file" >파일</label> </td>
+	         <td>  <input type="file" value="${ vo.b_file }" name="b_file" class="input_text" id="b_file" /></td>
+	         <td><input type="hidden" name="boardID" value="${ vo.boardID }"></td>
+	      </tr>
 	      <tr>
 	         <td colspan="2" id="frm_button">
 	            <button type="submit" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
-	            <button type="reset" class="bt_css" onclick = "location='boardList.do'">취소</button>
 	         </td>
 	      </tr>
 	   </table>
