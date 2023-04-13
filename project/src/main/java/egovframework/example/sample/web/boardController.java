@@ -248,6 +248,7 @@ public class boardController {
 	 * return message; }
 	 */
 
+	/* 게시글 상세보기 */
 	@RequestMapping(value = "/userboardDet.do")
 	public void userboardDet(@RequestParam("boardid") int boardid, @RequestParam("viewcnt") int viewcnt, boardVO d_vo, HttpServletResponse response)throws Exception {
 		/* 한글 인코딩 설정 */
@@ -279,5 +280,39 @@ public class boardController {
 		}
 	}
 
+	/* 게시글 수정 */
+	@RequestMapping(value = "/userboardMod.do")
+	public void userboardMod(@RequestParam("boardid") int boardid, boardVO d_vo, HttpServletResponse response)throws Exception {
+		/* 한글 인코딩 설정 */
+		response.setCharacterEncoding("utf-8");
+		String personJson ;
 
+		System.out.println("보드아이디 입니다."+boardid);
+
+		boardVO vo = boardService.seleteBoardData(boardid);
+		System.out.println("들어오 데이터 : "+vo.toString());
+
+		personJson = "{\"boardid\":\"" + vo.getBoardID() + "\",\"userID\":\"" + vo.getUserID() +"\",\"content\":\"" + vo.getContent() + "\",\"title\":\"" + vo.getTitle() + "\",\"b_file\":\"" + vo.getB_file()+ "\",\"password\":\"\"}";
+
+		try {
+			response.getWriter().print(personJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/* 게시글 수정 저장*/
+	@RequestMapping(value = "/userboardModsave.do")
+	public void userboardMod(boardVO vo, HttpServletResponse response)throws Exception {
+		System.out.println("수정 저장 들어옴 ");
+		System.out.println(vo.toString());
+		int result = boardService.updateboard(vo);
+		if (result == 1) {
+			System.out.println("수정 완료");
+		} else {
+			System.out.println("수정 실패");
+		}
+
+		System.out.println(result);
+	}
 }

@@ -20,6 +20,7 @@
  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <script>
+/* 글 상세보기 */
 function userdetail(boardid, viewcnt, bFile){
 	$.ajax({
 		url : "userboardDet.do",
@@ -29,6 +30,9 @@ function userdetail(boardid, viewcnt, bFile){
 		},
 		success : function(responseData){
 			$("#ajax").remove();
+			$("#detailbtn").remove();
+			$("#modifybtn").remove();
+
 			var data = JSON.parse(responseData);
 
 
@@ -53,15 +57,125 @@ function userdetail(boardid, viewcnt, bFile){
 			html += '<td >' + data.content + '</td>';
 			html += '</tr>';
 
+			html += '<input type="hidden" id="detailboardID" name="boardID"  value="'+data.boardid+'">';
+
 			html += '</table>';
 			html += '</form>';
+
+			html += '<div id="detailbtn" style=" text-align:center">';
+			html += '<button type="button" onclick="userModify()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>';
+			html += '<button class="bt_css">삭제</button>';
+			html += '</div>';
+
 			$("#user_board_detail").after(html);
 		}
-
 	})
-	$("#frm_button").css("display","block");
 }
 
+/* 글 수정 */
+function userModify(){
+	var boardid =  $("#detailboardID").val()
+	$.ajax({
+		url : "userboardMod.do",
+		type: "get",
+		data : { "boardid" : boardid },
+		success : function(responseData){
+			$("#ajax").remove();
+			$("#detailbtn").remove();
+			$("#modifybtn").remove();
+			var data = JSON.parse(responseData);
+
+
+			var html = ''
+				html += '<form action="" id="ajax" method="post" >';
+				html += '<table id="frm_table">';
+				html += '<h2>상세보기</h2>'
+
+
+					html += '<form action="" id="ajax" method="post" >';
+				html += '<table id="frm_table">';
+				html += '<h2>수정</h2>'
+
+
+				html += '<tr>';
+				html += '<td style="width:25%;"><label for="uID" >작성자</label></td>';
+				html += '<td><input type="text" id="userID" name="userID"  value="'+data.userID+'" readonly></td>';
+				html += '</tr>';
+
+				html += '<tr>';
+				html += '<td> <label for="title" >제목</label> </td>'
+				html += '<td><input type="text" id="title" name="title"  value="'+data.title+'"></td>';
+				html += '</tr>';
+
+				html += '<tr style="height:200px;">';
+				html += '<td > <label for="content" >내용</label> </td>'
+				html += '<td ><textarea cols="50" rows="10" name="content" id="content" >'+data.content+'</textarea></td>';
+				html += '</tr>';
+
+				html += '<input type="hidden" id="detailboardID" name="boardID"  value="'+data.boardid+'">';
+
+				html += '</table>';
+				html += '</form>';
+
+				html += '<div  id="modifybtn"  style=" text-align:center">';
+				html += '<button type="submit" onclick="userModifySave()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>';
+				html += '</div>';
+
+				$("#user_board_detail").after(html);
+		}
+	})
+}
+
+/* 수정 데이터 저장 */
+function userModifySave(){
+	$.ajax({
+		url : "userboardModsave.do",
+		type: "get",
+		data : $('#ajax').serialize(),
+		success : function(responseData){
+			$("#ajax").remove();
+			$("#detailbtn").remove();
+			$("#modifybtn").remove();
+			var data = JSON.parse(responseData);
+
+
+			var html = ''
+			html += '<form action="" id="ajax" method="post" >';
+			html += '<table id="frm_table">';
+			html += '<h2>수정</h2>'
+
+
+			html += '<tr>';
+			html += '<td style="width:25%;"><label for="uID" >작성자</label></td>';
+			html += '<td><input type="text" id="userID" name="userID"  value="'+data.userID+'" readonly></td>';
+			html += '</tr>';
+
+			html += '<tr>';
+			html += '<td> <label for="title" >제목</label> </td>'
+			html += '<td><input type="text" id="title" name="title"  value="'+data.title+'"></td>';
+			html += '</tr>';
+
+			html += '<tr style="height:200px;">';
+			html += '<td > <label for="content" >내용</label> </td>'
+			html += '<td ><textarea cols="50" rows="10" name="content" id="content" >'+data.title+'</textarea></td>';
+			html += '</tr>';
+
+			html += '<input type="hidden" id="detailboardID" name="boardID"  value="'+data.boardid+'">';
+
+			html += '</table>';
+			html += '</form>';
+
+			html += '<div  id="modifybtn"  style=" text-align:center">';
+			html += '<button type="submit" onclick="userModifySave()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>';
+			html += '</div>';
+
+			$("#user_board_detail").after(html);
+		}
+	})
+
+
+
+}
 </script>
 <body>
 <%@ include file="../include/boardTopmenu.jsp" %>
@@ -93,13 +207,15 @@ function userdetail(boardid, viewcnt, bFile){
 		</div>
 
 		<div id="user_board_detail">
-
-
 		</div>
-		<div  id="frm_button"  style="display:none; text-align:center">
-		     	<button type="button" onclick="location='boardModify.do?boardID=${vo.boardID}'" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
+			<!-- 상세보기 데이터 들어갈 곳 -->
+		<div id = "user_Modify">
+		</div>
+
+		<%-- <div  id="frm_button"  style="display:none; text-align:center">
+				<button type="button" onclick="userModify()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>
 				<button class="bt_css" onclick="fn_delete('${vo.boardID}')">삭제</button>
-		</div>
+		</div> --%>
 
 	</div>
 
