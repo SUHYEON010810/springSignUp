@@ -29,7 +29,6 @@
 
    h2{
    	  color : #586E9E;
-      text-align: center;
    }
 
    table{
@@ -39,10 +38,9 @@
       margin-right:auto;
    }
 
-    #listTable > th, td{
+  th, td{
       border : 1px solid #cccccc;
       padding:5px;
-      text-align: center;
    }
 
    tr{
@@ -53,6 +51,8 @@
    button{
       display:inline;
    }
+
+
 
    #pagediv a{
    		text-decoration: none;

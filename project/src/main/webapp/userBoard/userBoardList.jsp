@@ -39,7 +39,7 @@ function userdetail(boardid, viewcnt, bFile){
 			var html = ''
 			html += '<form action="" id="ajax" method="post" >';
 			html += '<table id="frm_table">';
-			html += '<h2>상세보기</h2>'
+			html += '<h2>상세보기</h2>';
 
 
 			html += '<tr>';
@@ -53,7 +53,7 @@ function userdetail(boardid, viewcnt, bFile){
 			html += '</tr>';
 
 			html += '<tr style="height:200px;">';
-			html += '<td > <label for="content" >내용</label> </td>'
+			html += '<td > <label for="content" >내용</label> </td>';
 			html += '<td >' + data.content + '</td>';
 			html += '</tr>';
 
@@ -64,7 +64,7 @@ function userdetail(boardid, viewcnt, bFile){
 
 			html += '<div id="detailbtn" style=" text-align:center">';
 			html += '<button type="button" onclick="userModify()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>';
-			html += '<button class="bt_css">삭제</button>';
+			html += '<button class="bt_css" onclick="userdelete()">삭제</button>';
 			html += '</div>';
 
 			$("#user_board_detail").after(html);
@@ -74,7 +74,7 @@ function userdetail(boardid, viewcnt, bFile){
 
 /* 글 수정 */
 function userModify(){
-	var boardid =  $("#detailboardID").val()
+	var boardid =  $("#detailboardID").val();
 	$.ajax({
 		url : "userboardMod.do",
 		type: "get",
@@ -87,14 +87,10 @@ function userModify(){
 
 
 			var html = ''
+
 				html += '<form action="" id="ajax" method="post" >';
 				html += '<table id="frm_table">';
-				html += '<h2>상세보기</h2>'
-
-
-					html += '<form action="" id="ajax" method="post" >';
-				html += '<table id="frm_table">';
-				html += '<h2>수정</h2>'
+				html += '<h2>수정</h2>';
 
 
 				html += '<tr>';
@@ -108,7 +104,7 @@ function userModify(){
 				html += '</tr>';
 
 				html += '<tr style="height:200px;">';
-				html += '<td > <label for="content" >내용</label> </td>'
+				html += '<td > <label for="content" >내용</label> </td>';
 				html += '<td ><textarea cols="50" rows="10" name="content" id="content" >'+data.content+'</textarea></td>';
 				html += '</tr>';
 
@@ -137,42 +133,30 @@ function userModifySave(){
 			$("#detailbtn").remove();
 			$("#modifybtn").remove();
 			var data = JSON.parse(responseData);
-
-
-			var html = ''
-			html += '<form action="" id="ajax" method="post" >';
-			html += '<table id="frm_table">';
-			html += '<h2>수정</h2>'
-
-
-			html += '<tr>';
-			html += '<td style="width:25%;"><label for="uID" >작성자</label></td>';
-			html += '<td><input type="text" id="userID" name="userID"  value="'+data.userID+'" readonly></td>';
-			html += '</tr>';
-
-			html += '<tr>';
-			html += '<td> <label for="title" >제목</label> </td>'
-			html += '<td><input type="text" id="title" name="title"  value="'+data.title+'"></td>';
-			html += '</tr>';
-
-			html += '<tr style="height:200px;">';
-			html += '<td > <label for="content" >내용</label> </td>'
-			html += '<td ><textarea cols="50" rows="10" name="content" id="content" >'+data.title+'</textarea></td>';
-			html += '</tr>';
-
-			html += '<input type="hidden" id="detailboardID" name="boardID"  value="'+data.boardid+'">';
-
-			html += '</table>';
-			html += '</form>';
-
-			html += '<div  id="modifybtn"  style=" text-align:center">';
-			html += '<button type="submit" onclick="userModifySave()" id="btn_Submit" name="signUpSubmit" class="bt_css">수정</button>';
-			html += '</div>';
-
-			$("#user_board_detail").after(html);
 		}
 	})
+	location.reload();
 
+}
+
+/* 삭제 */
+function userdelete(){
+	if( confirm ("정말 삭제하겠습니까? ")){
+		var boardid =  $("#detailboardID").val();
+		$.ajax({
+			url : "boardDelect.do",
+			type: "get",
+			data : { "boardID" : boardid},
+			success : function(responseData){
+				$("#ajax").remove();
+				$("#detailbtn").remove();
+				$("#modifybtn").remove();
+				var data = JSON.parse(responseData);
+
+			}
+		})
+		location.reload();
+     }
 
 
 }
@@ -181,30 +165,37 @@ function userModifySave(){
 <%@ include file="../include/boardTopmenu.jsp" %>
 	<div id="listDiv">
 		<h2>게시판</h2>
-		<div  style="overflow:auto; width:100%; height:193px;">
-	    <table id = "listTable">
-	       <tr>
-	          <th></th>
-	          <th>제목</th>
-	          <th>작성자</th>
-	          <th>등록날짜</th>
-	          <th>조회수</th>
-	       </tr>
-	       <!-- 반복문 -->
-	       <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
-	       <c:forEach var="result" items="${resultList}" varStatus="status">
-
-	          <tr>
-	          	<td> ${ status.count }</td>
-	             <td><a href="javascript:void(0);" class="atag" onclick="userdetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')" > ${ result.title } </a> </td>
-	             <td>${ result.userid }  </td>
-
-	             <td>${ result.regdate }  </td>
-	             <td>${ result.viewcnt }  </td>
-	          </tr>
-	       </c:forEach>
-	    </table>
+		<div style="text-align:right; margin-bottom:10px">
+				<input type="button" class="bt_css" id="" value="글등록" ></input>
 		</div>
+
+		<div  style="overflow:auto; id ="userboardList" width:100%; height:193px;">
+		    <table>
+		       <tr>
+		          <th></th>
+		          <th>제목</th>
+		          <th>작성자</th>
+		          <th>등록날짜</th>
+		          <th>조회수</th>
+		       </tr>
+		       <!-- 반복문 -->
+		       <!-- items : controller에서 지정한 addAttribute메소드의 이름과 같아야 함. -->
+		       <c:forEach var="result" items="${resultList}" varStatus="status">
+
+		          <tr>
+		          	<td> ${ status.count }</td>
+		             <td><a href="javascript:void(0);" class="atag" onclick="userdetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')" > ${ result.title } </a> </td>
+		             <td>${ result.userid }  </td>
+
+		             <td>${ result.regdate }  </td>
+		             <td>${ result.viewcnt }  </td>
+		          </tr>
+		       </c:forEach>
+		    </table>
+		</div>
+
+
+
 
 		<div id="user_board_detail">
 		</div>
