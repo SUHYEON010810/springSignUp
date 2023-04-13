@@ -38,7 +38,7 @@
  		            	if(result == "manager"){
  		            		location="memberList.do"
  		            	}else if(result == "user"){
- 		            		location="boardList.do"
+ 		            		location="userBoardList.do"
  		            	}else{
  		            		alert("로그인 정보가 잘못되었습니다.");
  		            	}

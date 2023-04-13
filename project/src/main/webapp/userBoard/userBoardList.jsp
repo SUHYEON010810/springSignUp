@@ -28,17 +28,14 @@
 
 
 	})
-	function userdetail(userid, viewcnt, bFile){
+	function userdetail(boardid, viewcnt, bFile){
 		const userdetail = document.getElementById('userboarddetail');
-		alert(userid);
-
-
 
 		 $.ajax({
 			   /* 전송 전 세팅 */
 			   type : "POST",
 			   data : {
-				   "userid":userid,
+				   "boardID":boardid,
 				   "viewCnt":viewcnt
 				   },
 	           url : "userboardDet.do",
@@ -46,10 +43,32 @@
 
 	            success: function(result){
 	            	if(result == "ok"){
-	            		alert("사용 가능한 아이디 입니다.");
-	            		idch = "idOK";
+	            		alert("성공");
+
+
+	            		$('#user_board_detail tbody').html(''); // 일단 비워
+
+	            		if(result.length >0) { //값을 받아오면 0보단 커지지
+	 	                    var detail_rt =  // tbody 내부에 넣을 html코드 작성
+	 	                    '<tr>' +
+	 	                    	'<td style="width:25%;"><label for="uID" >작성자</label></td>' +
+	 	                    	'<td>' + ${ title } + '</td>'+
+	 	                    '<tr>' +
+	 	                    '<tr>' +
+	 	                    	'<td style="width:25%;"><label for="title">제목</label></td>' +
+	 	                    	'<td>' + ${ vo.title }+ '</td>'+
+	                     	'<tr>';
+
+	 	                    $('#user_board_detail tbody').append(detail_rt);
+	 	                    console.log(success);
+	            		 }
+
+
+
+
+	            		user_board_detail.style.display = 'block';
 	            	}else{
-	            		alert("이미 사용중인 아이디 입니다.");
+	            		alert("실패");
 	            	}
 	            },
 	            error: function(){
@@ -82,7 +101,7 @@
 
 	          <tr>
 	          	<td>${ status.count }</td>
-	             <td><a href="javascript:void(0);" id = "userboarddetail" onclick="userdetail('${result.userid}', '${result.viewcnt}', '${result.bFile}')"> ${ result.title } </a> </td>
+	             <td><a href="javascript:void(0);" id = "userboarddetail" onclick="userdetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')"> ${ result.title } </a> </td>
 	             <td>${ result.userid }  </td>
 
 	             <td>${ result.regdate }  </td>
@@ -96,24 +115,9 @@
 			<form action="boardModify.do" encType="multipart/form-data" method="post" >
 				<table id="frm_table">
 					<h2>상세보기</h2>
-					<tr>
-						<td style="width:25%;"> <label for="uID" >작성자</label> </td>
-						<td> ${vo.userID } </td>
-					</tr>
-					<tr>
-						<td> <label for="title" >제목</label> </td>
-						<td>${ vo.title }</td>
-					</tr>
-					<tr style="height:200px;">
-						<td > <label for="content" >내용</label> </td>
-						<td> ${vo.content} </td>
-					</tr>
-					<c:if test="${vo.b_file ne null}">
-						<tr>
-							<td> <label for="b_file" >파일</label> </td>
-							<td><a href="fileDownload.do?b_file=${vo.b_file}" ><input type="text" id="b_file" value="${vo.b_file}" name="b_file" readonly="readonly" /></a></td>
-						</tr>
-					</c:if>
+					<tbody>
+	               <!-- js 로 넣을 공간 -->
+	               </tbody>
 				</table>
 			</form>
 			 <div  id="frm_button">

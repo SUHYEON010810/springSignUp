@@ -8,8 +8,10 @@ import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -225,39 +227,16 @@ public class boardController {
 		return "userBoard/userBoardList";
 
 	}
-	@ResponseBody
-	@RequestMapping(value="/userboardDet.do")
-	public String userboardDet(String userid, int viewCnt) throws Exception{
-		String message = "";
 
-		System.out.println(userid);
-		System.out.println("조회수===="+viewCnt);
-		int count=0;
-		/*int count = memberService.idcheck(userid);*/
-		if(count == 0) {
-
-			message = "ok";
-		}
-		return message;
-	}
 	/*사용자 상세보기*/
 	@ResponseBody
-	@RequestMapping(value="userboardDetail.do")
-	public String userboardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) {
-		System.out.println("디테일 들어옴");
+	@RequestMapping(value="/userboardDet.do")
+	public String userboardDet(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
+		String message = "ok";
 
-
-		return "";
-	}
-
-	/*@RequestMapping(value="/userboardDetail.do")
-	public String userboardDetail(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
-		System.out.println("디테일 들어옴 ");
-		return"";
-		System.out.println("id ==== "+boardID+"cnt ==== "+viewCnt);
-		 조회수
 		viewCnt +=1;
 		d_vo.setViewCnt(viewCnt);
+
 		int data = boardService.updateViewCnt(d_vo);
 		if (data == 1) {
 			System.out.println("조회수 증가 완료");
@@ -268,8 +247,21 @@ public class boardController {
 		boardVO vo = boardService.seleteBoardData(boardID);
 		model.addAttribute("vo", vo);
 
-		return "aa";
-	}*/
+		System.out.println("데이터 ---> "+vo.toString());
+
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("boardID", vo.getBoardID());
+		map.put("userID", vo.getUserID());
+		map.put("title", vo.getTitle());
+		map.put("b_file", vo.getB_file());
+
+
+		return message;
+	}
+
+
 
 
 }

@@ -40,6 +40,7 @@
    //상단 탭 클릭 이벤트
    $(function(){
       $('.tab_01 ul il').click(function(){
+      /*   클래스값 제거 */
       $('.tab_01 ul li').removeClass('on');
       $(this).addClass('on');
       $('.tab_content').hide();
