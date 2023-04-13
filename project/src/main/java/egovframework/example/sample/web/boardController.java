@@ -2,6 +2,7 @@ package egovframework.example.sample.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -25,6 +26,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -229,7 +232,7 @@ public class boardController {
 	}
 
 	/*사용자 상세보기*/
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value="/userboardDet.do")
 	public String userboardDet(int boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{
 		String message = "ok";
@@ -260,6 +263,47 @@ public class boardController {
 
 		return message;
 	}
+*/
+
+	@RequestMapping(value="/test.do")
+	public String test() throws Exception{
+
+		return "userBoard/test";
+	}
+
+
+/*	@RequestMapping(value="/ajax.seo")
+	public void AjaxView(@RequestParam("id") String id, HttpServletResponse response) {
+		System.out.println("test 컨트롤러 들어 왔음 ");
+
+		String personJson;
+		personJson = "{\"id\":\""+"testid"+"\",\"name\":\""+"testname"+"\",\"password\":\"\"}";
+		try {
+			response.getWriter().print(personJson);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+
+
+	}*/
+
+	@RequestMapping(value="/userboardDet.do")
+	public void userboardDet(@RequestParam("id") String id, HttpServletResponse response) {
+		System.out.println("테스트 들어옴");
+
+	/*	System.out.println("데이터 보드 아이디 :====== "+boardID);
+		System.out.println("데이터 조회수 :====== "+viewCnt);*/
+
+
+		String personJson;
+		personJson = "{\"id\":\""+id+"\",\"name\":\""+"testname"+"\",\"password\":\"\"}";
+		try {
+			response.getWriter().print(personJson);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 
 
