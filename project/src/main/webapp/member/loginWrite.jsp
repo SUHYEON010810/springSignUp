@@ -36,7 +36,7 @@
 
  		            success: function(result){
  		            	if(result == "manager"){
- 		            		location="memberList.do"
+ 		            		location="boardList.do"
  		            	}else if(result == "user"){
  		            		location="userBoardList.do"
  		            	}else{
@@ -44,7 +44,7 @@
  		            	}
  		            },
  		            error: function(){
- 		            	alert("오류발생");
+ 		            	alert("로그인 정보가 잘못되었습니다.");
  		            }
  		         })
 

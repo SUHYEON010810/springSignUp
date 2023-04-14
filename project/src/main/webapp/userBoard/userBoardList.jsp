@@ -90,7 +90,6 @@ function userdetail(boardid, viewcnt, bFile){
 
 /* 글 등록 데이터 저장 */
 function userwirte(){
-	alert("클릭");
 	$.ajax({
 		url : "userboardWriteSave.do",
 		type: "post",

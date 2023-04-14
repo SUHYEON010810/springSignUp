@@ -44,7 +44,13 @@
 	<div id="topmenuDiv">
 		<div id="topmenuDiv_left">
 			<a href="memberList.do" id="left_menu_user">회원</a>
-			<a href="boardList.do">게시판</a>
+			<% if(division == "관리자"){ %>
+				<a href="boardList.do">게시판</a>
+			<% }else{ %>
+				<a href="userBoardList.do">게시판</a>
+			<%} %>
+
+
 		</div>
 		<div id="topmenuDiv_right">
 			<% if(USERID == null){ %>
