@@ -22,17 +22,20 @@
 		color : #586E9E;
 	}
 	#content_list{
-		padding:0px 20%;
+		padding:0px 25%;
 		text-align: center;
 		margin-bottom :6px;
 
+	}
+	#listDiv{
+		padding:0px 25%;
 	}
 	.content_list_div{
 		text-align: right;
 	}
 	.content_list_data{
 		display: inline-block;
-		width: calc(100% / 5);
+		width: calc(75%/ 3);
 		height: 80px;
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		border-radius: 7%;
@@ -62,28 +65,48 @@
 	.carddate{
 		margin-right: 10px;
 	}
+	#searchFrm{
+		display: inline-block;
+		margin-bottom:10px;
+	}
+	#nemu_div{
+		text-align: center;
+	}
+	#nemuButton{
+		float: right;
+	}
 
 </style>
 </head>
-<script>
-$(function(){
-	    $(".content_list_data").click(function(){
-			alert("클릭");
-	    })
-	})
+<script >
+function boarddetail(boardid, viewcnt, bFile){
+	location='boardDetail.do?boardID='+boardid+'&viewCnt='+viewcnt;
+}
 </script>
 <body>
 <%@ include file="../include/boardTopmenu.jsp" %>
-<h1>게시판</h1>
+	<div id="listDiv">
+		<h1>게시판</h1>
+		<div id="nemu_div">
+			<form id="searchFrm" class="nemu__data" name="searchFrm" method="post" action="cardBoardList.do">
+				<input type="text" name="searchText" id="searchText" placeholder="제목">
+				<button type="submit" class="bt_css">검색</button>
+			</form >
+
+			<button class="bt_css nemu__data" id="nemuButton" onclick = "location='boardWrite.do'"> 글 등록 </button>
+		</div>
+	</div>
+
 	<div id="content_list">
 		<c:forEach var="result" items="${resultList}" varStatus="status">
-			<div class="content_list_data">
+			<div class="content_list_data"  onclick="boarddetail('${result.boardid}', '${result.viewcnt}', '${result.bFile}')">
 				<span class="carduser"  > ${ result.userid }      </span>
 				<span class="cardtitle" > ${ result.title } </span>
 				<div class="cardDC">
 					<span class="carddate"  >${ result.regdate }          </span>
 					<i class="fa-solid fa-eye"></i>
 					<span class="cardcnt"   >  ${ result.viewcnt }        </span>
+
 				</div>
 			</div>
 	   </c:forEach>

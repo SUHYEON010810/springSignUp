@@ -339,11 +339,11 @@ public class boardController {
 
 		/* 페이징 처리를 위해 토탈 갯수 얻어오기 */
 		int total = boardService.selectTotal(vo);
-		System.out.println("토탈 데이터 : ===== "+ total);
 
 		int totalPage = (int) Math.ceil((double)total/10);
 		int viewPage = vo.getViewPage();
-		System.out.println("view 페이지 ====="+vo.getViewPage());
+
+		System.out.println("검색 내용" + vo.getSearchText());
 
 
 		int startIndex = (viewPage-1)*9+1;
@@ -356,15 +356,10 @@ public class boardController {
 		vo.setStartIndex(startIndex);
 		vo.setEndIndex(endIndex);
 
-		System.out.println("카데이터 === "+vo.toString());
-
 		List<?> list = boardService.SelectBoardList2(vo);
-		System.out.println("리스트 ==== " + list);
 		model.addAttribute("resultList", list);
 		model.addAttribute("tota", total);
 		model.addAttribute("totalPage", totalPage);
-
-		System.out.println(list);
 
 		return "userBoard/cardBoardList";
 	}

@@ -19,16 +19,12 @@
 </head>
 
 <script>
-/*  $(function() {
 
-	    $("#sortGubun").change(function() {
-	        var data = $(this).val();
-	        onclick = "location='boardWrite.do'"
-	    });
-	}); */
 
 
 </script>
+
+
 
 <body>
 	<%@ include file="../include/boardTopmenu.jsp" %>

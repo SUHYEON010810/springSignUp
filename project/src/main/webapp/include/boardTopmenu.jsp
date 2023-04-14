@@ -25,6 +25,9 @@
 		margin-right:10px;
 
 	}
+	#cardlist{
+		margin-left:10px;
+	}
 
 
 </style>
@@ -49,7 +52,7 @@
 			<% }else{ %>
 				<a href="userBoardList.do">게시판</a>
 			<%} %>
-
+				<a href="cardBoardList.do" id="cardlist">카드형 게시판</a>
 
 		</div>
 		<div id="topmenuDiv_right">
