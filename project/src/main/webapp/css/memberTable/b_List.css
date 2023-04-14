@@ -29,6 +29,7 @@
 
    h2{
    	  color : #586E9E;
+   	  margin-bottom : 7px;
    }
 
    table{
@@ -52,7 +53,10 @@
       display:inline;
    }
 
-
+   .input_text{
+   	 width:96%%;
+   	 height:96%;
+   }
 
    #pagediv a{
    		text-decoration: none;

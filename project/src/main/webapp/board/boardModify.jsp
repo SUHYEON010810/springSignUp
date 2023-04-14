@@ -24,16 +24,16 @@
 	      </tr>
 	      <tr>
 	         <td> <label for="title" >제목</label> </td>
-	         <td><input type="text" name="title" class="input_text" value="${ vo.title }" id="title" /></td>
+	         <td><input type="text" name="title" class="input_text" value="${ vo.title }" id="title" style="width:96%;" /></td>
 	      </tr>
 	      <tr style="height:200px;">
 	         <td > <label for="content" >내용</label> </td>
-	         <td><textarea cols="50" rows="10" name="content" id="content" >${vo.content}</textarea>  </td>
+	         <td><textarea cols="50" rows="10" name="content" id="content" style="width:96%;" >${vo.content}</textarea>  </td>
 	      </tr>
 	      <tr>
 	         <td> <label for="b_file" >파일</label> </td>
-	         <td>  <input type="file" value="${ vo.b_file }" name="b_file" class="input_text" id="b_file" /></td>
-	         <td><input type="hidden" name="boardID" value="${ vo.boardID }"></td>
+	         <td>  <input type="file" value="${ vo.b_file }" name="b_file" class="input_text" id="b_file"   /></td>
+	         <input type="hidden" name="boardID" value="${ vo.boardID }">
 	      </tr>
 	      <tr>
 	         <td colspan="2" id="frm_button">

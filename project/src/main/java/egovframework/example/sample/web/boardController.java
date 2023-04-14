@@ -50,7 +50,7 @@ public class boardController {
 	}
 
 	@RequestMapping(value = "/boardWriteSave.do")
-	public String InsertLogin(@ModelAttribute("testVo") boardVO vo, MultipartHttpServletRequest req) throws Exception {
+	public String InsertLogin( boardVO vo, MultipartHttpServletRequest req) throws Exception {
 
 		String fileName = null;
 		MultipartFile uploadFile = vo.getUploadFile();
@@ -205,48 +205,39 @@ public class boardController {
 
 	///////////////////////////////
 
+	/* 글등록 데이터 저장*/
+	@RequestMapping(value = "/userboardWriteSave.do")
+	public void userboardWriteSave(boardVO vo, HttpServletResponse response)throws Exception {
+		System.out.println("저장 들어옴 ================  ");
+		System.out.println("데이터 === >"+vo.toString());
+
+		/* 등록 날짜 세팅 */
+		Calendar cal = new GregorianCalendar();
+		Date date = new Date(cal.getTimeInMillis());
+		vo.setRegDate(date);
+
+		String result = boardService.Insertboard(vo);
+		if (result == "1") {
+			System.out.println("등록 완료");
+		} else {
+			System.out.println("등록실패");
+		}
+	}
+
 	/* 사용자 글 리스트 */
 	@RequestMapping(value = "/userBoardList.do")
 	public String userboardinsert(boardVO vo, ModelMap model) throws Exception {
-		System.out.println("정렬기준" + vo.getSortGubun());
-		System.out.println("검색 내용" + vo.getSearchText());
+	/*	System.out.println("정렬기준" + vo.getSortGubun());
+		System.out.println("검색 내용" + vo.getSearchText());*/
 
 		List<?> list = boardService.SelectBoardList(vo);
-		System.out.println("리스트 ==== " + list);
+		/*System.out.println("리스트 ==== " + list);*/
 		model.addAttribute("resultList", list);
 
 		System.out.println(list);
 		return "userBoard/userBoardList";
 
 	}
-
-	/* 사용자 상세보기 */
-	/*
-	 * @ResponseBody
-	 *
-	 * @RequestMapping(value="/userboardDet.do") public String userboardDet(int
-	 * boardID, int viewCnt, boardVO d_vo, ModelMap model) throws Exception{ String
-	 * message = "ok";
-	 *
-	 * viewCnt +=1; d_vo.setViewCnt(viewCnt);
-	 *
-	 * int data = boardService.updateViewCnt(d_vo); if (data == 1) {
-	 * System.out.println("조회수 증가 완료"); }else { System.out.println("조회수 증가 실패"); }
-	 *
-	 * boardVO vo = boardService.seleteBoardData(boardID); model.addAttribute("vo",
-	 * vo);
-	 *
-	 * System.out.println("데이터 ---> "+vo.toString());
-	 *
-	 *
-	 * Map<String, Object> map = new HashMap<String, Object>();
-	 *
-	 * map.put("boardID", vo.getBoardID()); map.put("userID", vo.getUserID());
-	 * map.put("title", vo.getTitle()); map.put("b_file", vo.getB_file());
-	 *
-	 *
-	 * return message; }
-	 */
 
 	/* 게시글 상세보기 */
 	@RequestMapping(value = "/userboardDet.do")
@@ -315,4 +306,6 @@ public class boardController {
 
 		System.out.println(result);
 	}
+
+
 }
