@@ -83,12 +83,16 @@ public class boardController {
 	/* 게시글 리스트 */
 	@RequestMapping(value = "/boardList.do")
 	public String boardList(boardVO vo, ModelMap model) throws Exception {
+
+
+
 		System.out.println("정렬기준" + vo.getSortGubun());
 		System.out.println("검색 내용" + vo.getSearchText());
 
 		List<?> list = boardService.SelectBoardList(vo);
 		System.out.println("리스트 ==== " + list);
 		model.addAttribute("resultList", list);
+
 
 		System.out.println(list);
 
@@ -203,7 +207,18 @@ public class boardController {
 
 	}
 
-	///////////////////////////////
+
+
+	/*
+	 *
+	 *
+	 *
+	 *
+	 *
+	*/
+
+
+
 
 	/* 글등록 데이터 저장*/
 	@RequestMapping(value = "/userboardWriteSave.do")
@@ -307,5 +322,51 @@ public class boardController {
 		System.out.println(result);
 	}
 
+
+
+
+
+/*
+ *
+ *
+ *
+ *
+ *
+*/
+
+	@RequestMapping(value = "/cardBoardList.do")
+	public String cardBoardList(boardVO vo, ModelMap model)throws Exception {
+
+		/* 페이징 처리를 위해 토탈 갯수 얻어오기 */
+		int total = boardService.selectTotal(vo);
+		System.out.println("토탈 데이터 : ===== "+ total);
+
+		int totalPage = (int) Math.ceil((double)total/10);
+		int viewPage = vo.getViewPage();
+		System.out.println("view 페이지 ====="+vo.getViewPage());
+
+
+		int startIndex = (viewPage-1)*9+1;
+		int endIndex = startIndex + (9-1);
+
+		if(viewPage > totalPage || viewPage <1) {
+			viewPage = 1;
+		}
+
+		vo.setStartIndex(startIndex);
+		vo.setEndIndex(endIndex);
+
+		System.out.println("카데이터 === "+vo.toString());
+
+		List<?> list = boardService.SelectBoardList2(vo);
+		System.out.println("리스트 ==== " + list);
+		model.addAttribute("resultList", list);
+		model.addAttribute("tota", total);
+		model.addAttribute("totalPage", totalPage);
+
+		System.out.println(list);
+
+		return "userBoard/cardBoardList";
+	}
 
 }

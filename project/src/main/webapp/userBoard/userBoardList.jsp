@@ -245,11 +245,11 @@ function userdelete(){
 				</tr>
 				<tr>
 					<td> <label for="title" >제목</label> </td>
-					<td> <input type="text" name="title" class="input_text" id="title"  style="width:96%;"/> </td>
+					<td> <input type="text" name="title" class="input_text" id="title" maxlength="10"  style="width:96%;"/> </td>
 				</tr>
 				<tr>
 					<td> <label for="content" >내용</label> </td>
-					<td><textarea cols="50" rows="10" name="content" id="content" style="width:96%;"></textarea></td>
+					<td><textarea cols="50" rows="10" name="content" id="content" style="width:96%;" maxlength="333"></textarea></td>
 				</tr>
 
 				<tr>

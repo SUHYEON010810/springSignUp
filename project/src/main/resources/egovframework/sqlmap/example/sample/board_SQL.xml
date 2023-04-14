@@ -26,6 +26,20 @@
 		</isNull>
 	</select>
 
+		<!-- 게시판 목록2 -->
+	<select id="boardDAO.selectList2" resultClass="egovMap">
+			 SELECT b.* FROM(
+			 	SELECT rownum rn, a.* FROM(
+			 		SELECT  boardID, title, userID, TO_CHAR(regDate, 'yyyy-mm-dd')as regDate, viewCnt, b_file
+					FROM board
+					)a ) b
+			<![CDATA[
+				WHERE rn >= #startIndex# AND rn <= #endIndex#
+			]]>
+
+
+	</select>
+
 	<select id="boardDAO.seleteBoardData" resultClass="boardVO">
 		SELECT boardID, userID, title, content, b_file, regDate, viewCnt  FROM board
 		WHERE boardID=#boardID#
@@ -44,5 +58,11 @@
 		UPDATE board SET title = #title#, content = #content#, b_file = #b_file#
 		WHERE boardID = #boardID#
 	</update>
+
+	<select id="boardDAO.selectTotal" resultClass="java.lang.Integer">
+		SELECT COUNT(*) total FROM board
+	</select>
+
+
 
 </sqlMap>

@@ -58,6 +58,18 @@ public class boardServiceImpl extends EgovAbstractServiceImpl implements boardSe
 		return boardDAO.updateboard(vo);
 	}
 
+	@Override
+	public int selectTotal(boardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectTotal(vo);
+	}
+
+	@Override
+	public List<?> SelectBoardList2(boardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectList2(vo);
+	}
+
 
 
 }

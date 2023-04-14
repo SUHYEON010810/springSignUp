@@ -16,7 +16,11 @@ public interface boardService {
 	public int deleteBoard(int boardID) throws Exception;
 
 	/* 조회수 증가 */
-	public int updateViewCnt(boardVO d_vo);
+	public int updateViewCnt(boardVO d_vo)throws Exception;
 
-	public int updateboard(boardVO vo);
+	public int updateboard(boardVO vo)throws Exception;
+
+	public int selectTotal(boardVO vo)throws Exception;
+
+	public List<?> SelectBoardList2(boardVO vo)throws Exception;
 }

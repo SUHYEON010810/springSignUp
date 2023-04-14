@@ -109,13 +109,13 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" name="userID" class="input_text" id="uID" placeholder="아이디" />
+					<input type="text" name="userID" class="input_text" id="uID" placeholder="아이디" maxlength="15"/>
 
 				</td>
 				<td><input class="bt_css" type="button"   name="idCheck" value="중복 확인" /></td>
 			</tr>
 			<tr>
-				<td> <input type="password" name="password" id="uPass" class="input_text" placeholder="비밀번호"/> </td>
+				<td> <input type="password" name="password" id="uPass" class="input_text" placeholder="비밀번호" maxlength="15" /> </td>
 			</tr>
 			<tr>
 				<td>
@@ -123,15 +123,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="password" id="passchk" name="password_confirm" class="input_text" placeholder="비밀번호 확인" /></td>
+				<td><input type="password" id="passchk" name="password_confirm" class="input_text" placeholder="비밀번호 확인" maxlength="15"/></td>
 			</tr>
 
 			<tr>
-				<td><input type="text" id="uName" placeholder="이름" class="input_text" name="name" required/></td>
+				<td><input type="text" id="uName" placeholder="이름" class="input_text" name="name" required maxlength="15"/></td>
 			</tr>
 
 			<tr>
-                <td> <input type="text" name="phone"  id="tel_ch" class="input_text"  placeholder="전화번호" required maxlength="13"/></td>
+                <td> <input type="text" name="phone"  id="tel_ch" class="input_text"  placeholder="전화번호" required maxlength="13" maxlength="15"/></td>
             </tr>
            <tr>
            		<td>

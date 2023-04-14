@@ -26,11 +26,11 @@
 			</tr>
 			<tr>
 				<td> <label for="title" >제목</label> </td>
-				<td> <input type="text" name="title" class="input_text" id="title" /> </td>
+				<td> <input type="text" name="title" class="input_text" id="title" maxlength="10"/> </td>
 			</tr>
 			<tr>
 				<td> <label for="content" >내용</label> </td>
-				<td><textarea cols="50" rows="10" name="content" id="content"></textarea></td>
+				<td><textarea cols="50" rows="10" name="content" id="content" maxlength="333"></textarea></td>
 			</tr>
 			<tr>
 				<td> <label for="b_file" >파일</label> </td>

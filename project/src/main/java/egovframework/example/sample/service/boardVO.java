@@ -12,6 +12,11 @@ public class boardVO {
 	private Date regDate;
 	private int viewCnt=0;
 
+	private int viewPage = 1;
+	private int startIndex = 1;
+	private int endIndex = 9;
+
+
 	/* 게시판 검색 및 정렬 하기위해 변수 선언*/
 	private String searchText;
 	private String sortGubun;
@@ -80,6 +85,24 @@ public class boardVO {
 	}
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
+	}
+	public int getViewPage() {
+		return viewPage;
+	}
+	public void setViewPage(int viewPage) {
+		this.viewPage = viewPage;
+	}
+	public int getStartIndex() {
+		return startIndex;
+	}
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+	public int getEndIndex() {
+		return endIndex;
+	}
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
 	}
 	@Override
 	public String toString() {

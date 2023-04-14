@@ -56,8 +56,8 @@
 	<form name="frm" method="post" id = "frm" style="margin-top:80px;">
 		<h2>로그인</h2>
 		<div id = "inputDiv">
-			<input type="text" name="userID" id="userID" placeholder="아이디">
-			<input type="password" name="password" id="password" placeholder="비밀번호">
+			<input type="text" name="userID" id="userID" placeholder="아이디" maxlength="15">
+			<input type="password" name="password" id="password" placeholder="비밀번호" maxlength="15">
 		</div>
 		<div id="buttonDiv">
 			<button type="button" id="btn_Submit" name="loginSubmit" class="bt_css" >로그인</button>
